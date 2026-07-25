@@ -82,6 +82,7 @@ Practical, project-oriented curriculum focused on team deliverables evaluated by
 ---
 
 ### Languages
+*   **Italian:** C2 (Native)
 *   **English:** C1 (Advanced)
 
 ---
@@ -161,6 +162,7 @@ Percorso pratico orientato allo sviluppo di progetti di team valutati da persona
 ---
 
 ### Competenze Linguistiche
+*   **Italiano:** C2 (Madrelingua)
 *   **Inglese:** C1 (Livello Avanzato)
 
 ---
