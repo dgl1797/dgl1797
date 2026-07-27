@@ -4,7 +4,7 @@
 **AI & Data Specialist | M.Sc. Artificial Intelligence & Data Engineering**
 *   **Date of birth:** March 17, 1997 | **Nationality:** Italian
 *   **Contact:** (+39) 3405133275 | [digiacomoluca1797@gmail.com](mailto:digiacomoluca1797@gmail.com)
-*   **Links:** [GitHub (dgl1797)](https://github.com/dgl1797) | LinkedIn: [Luca Di Giacomo](https://www.linkedin.com/in/luca-di-giacomo-78267a38b)
+*   **Links:** [GitHub (dgl1797)](https://github.com/dgl1797) | LinkedIn: [Luca Di Giacomo](https://www.linkedin.com/in/luca-di-giacomo-78267a38b) | [Web Site](https://dgl1797.github.io/dgl1797/)
 
 ---
 
