@@ -1,5 +1,5 @@
 
-# Luca Di Giacomo [![EN](https://img.shields.io/badge/-EN-blue?style=for-the-badge)](./pdfs/Luca_Di_Giacomo_Resume_EN.pdf) [![IT](https://img.shields.io/badge/-IT-blue?style=for-the-badge)](./pdfs/Luca_Di_Giacomo_Resume_IT.pdf)
+# Luca Di Giacomo
 
 **AI & Data Specialist | M.Sc. Artificial Intelligence & Data Engineering**
 *   **Date of birth:** March 17, 1997 | **Nationality:** Italian
