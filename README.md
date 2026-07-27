@@ -145,7 +145,13 @@ Percorso pratico orientato allo sviluppo di progetti di team valutati da persona
 
 #### **Laurea Triennale in Ingegneria Informatica (L-8)**
 *Politecnico di Torino | 07/03/2021 – 28/12/2021*
-* **Esami principali:** Algoritmi e Strutture Dati, Basi di Dati, Programmazione a Oggetti, Sistemi Operativi, Reti di Calcolatori.
+
+**Esami principali:** 
+  * **Algoritmi e Strutture Dati:** Principali algoritmi e metodi di ottimizzazione e calcolo della complessità computazionale con implementazione pratica attraverso puntatori e classi. [C/C++]
+  * **Basi di Dati:** Algebra relazionale e RDBMs SQL con progetto pratico di sito web. [SQL, JS, HTML, CSS]
+  * **Programmazione a Oggetti:** Basi di Software Engineering, Ciclo di vita del Software, Programmazione ad Oggetti. [UML, Java, Functional/Non-Functional Requirements, Use Case diagrams]
+  * **Sistemi Operativi:** Basi di sistemi operativi e multi-thread programming. [C/C++]
+  * **Reti di Calcolatori:** Principali protocolli di comunicazione dello stack del modello ISO/OSI.
 
 ---
 
