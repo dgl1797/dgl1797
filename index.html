@@ -1067,6 +1067,27 @@
         y += lines.length * lineHeight + gap;
       }
 
+      // Clickable link with blue underlined shown text instead of the raw URL.
+      // Renders the text, attaches a link annotation, and draws an underline.
+      function addLink(text, url, opts = {}) {
+        const {
+          fontSize = 8.5,
+          color = COLORS.accent,
+          bold = false,
+          x = margin,
+          yPos = y
+        } = opts;
+        doc.setFont('helvetica', bold ? 'bold' : 'normal');
+        doc.setFontSize(fontSize);
+        setColor(doc.setTextColor.bind(doc), color);
+        const width = doc.getTextWidth(text);
+        doc.textWithLink(text, x, yPos, { url });
+        setColor(doc.setDrawColor.bind(doc), color);
+        doc.setLineWidth(0.25);
+        doc.line(x, yPos + 0.8, x + width, yPos + 0.8);
+        return width;
+      }
+
       function addSubLabel(text, minFollowing = 6) {
         // Reserve space for the label itself PLUS a minimum amount of the
         // bullet content that follows it, so it never sits alone at the
@@ -1102,15 +1123,28 @@
           : 'Data di nascita: 17 Marzo 1997   |   Nazionalit\u00e0: Italiana',
         margin, 29
       );
-      doc.text(
-        '(+39) 3405133275   |   digiacomoluca1797@gmail.com',
-        margin, 34
-      );
-      doc.setTextColor(...COLORS.accentLight);
-      doc.text(
-        'dgl1797.github.io/dgl1797   |   linkedin.com/in/luca-di-giacomo-78267a38b',
-        margin, 39
-      );
+      // clickable header links (blue underlined text instead of raw URLs)
+      const headerLinkColor = [96, 165, 250]; // readable blue on the dark header band
+      const hSep = '   |   ';
+      doc.setFont('helvetica', 'normal');
+      doc.setFontSize(8.5);
+      const hSepW = doc.getTextWidth(hSep);
+
+      // phone + email
+      let hx = margin;
+      hx += addLink('(+39) 3405133275', 'tel:+393405133275', { fontSize: 8.5, color: headerLinkColor, x: hx, yPos: 34 });
+      doc.setTextColor(...COLORS.white);
+      doc.text(hSep, hx, 34);
+      hx += hSepW;
+      hx += addLink('digiacomoluca1797@gmail.com', 'mailto:digiacomoluca1797@gmail.com', { fontSize: 8.5, color: headerLinkColor, x: hx, yPos: 34 });
+
+      // personal website + LinkedIn
+      hx = margin;
+      hx += addLink('personal website', 'https://dgl1797.github.io/dgl1797/', { fontSize: 8.5, color: headerLinkColor, x: hx, yPos: 39 });
+      doc.setTextColor(...COLORS.white);
+      doc.text(hSep, hx, 39);
+      hx += hSepW;
+      hx += addLink('LinkedIn', 'https://www.linkedin.com/in/luca-di-giacomo-78267a38b', { fontSize: 8.5, color: headerLinkColor, x: hx, yPos: 39 });
 
       y = 53;
 
@@ -1170,7 +1204,8 @@
       );
       addText(isEn ? 'University of Pisa   |   Final Grade: 108/110' : 'Universit\u00e0 di Pisa   |   Valutazione: 108/110', { fontSize: 8, color: COLORS.gray, gap: 2 });
       addText(isEn ? 'Thesis: Model Weight Learning as a Novel Paradigm in Computer Vision' : 'Tesi: Model Weight Learning as a Novel Paradigm in Computer Vision', { fontSize: 8, italic: true, color: COLORS.text, gap: 2 });
-      addText(isEn ? 'Key Projects: github.com/dgl1797/University-of-Pisa-Projects' : 'Progetti: github.com/dgl1797/University-of-Pisa-Projects', { fontSize: 8, color: COLORS.accent, gap: 3.5 });
+      addLink(isEn ? 'Key Projects' : 'Progetti', 'https://github.com/dgl1797/University-of-Pisa-Projects', { fontSize: 9, color: COLORS.accent, bold: true });
+      y += 6.5;
 
       const aiProjectsEn = [
         'FPA-Augmented Classification: Data Mining pipeline for Frequent Pattern extraction. [Jupyter, Scikit-learn, Imblearn, SMOTE, mlxtend, Flask, React]',
