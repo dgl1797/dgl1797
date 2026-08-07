@@ -63,7 +63,7 @@ Practical, project-oriented curriculum focused on team deliverables evaluated by
 *   **IoT System for Industrial Monitoring:** Built an end-to-end industrial monitoring and control system. Simulated sensor nodes using Contiki-NG containers, integrated MQTT/CoAP protocols to communicate with a Java backend and MySQL database, and visualized operational telemetry via Grafana dashboards. *[Java, MQTT, CoAP, Grafana, MySQL, Contiki-NG]*
 
 #### **Bachelor of Science in Computer Engineering (L-8)**
-*Politecnico di Torino | Mar 2021 – Dec 2021*
+*Politecnico di Torino | Sep 2015 – Jul 2021*
 
 **Key Coursework:** Algorithms and Data Structures, Databases, Object-Oriented Programming, Operating Systems, Computer Networks.
 
