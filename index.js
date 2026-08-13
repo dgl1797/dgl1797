@@ -335,8 +335,6 @@ function downloadPDF() {
   const pLineH = pFs * 0.42;
   checkPageBreak(pLines.length * pLineH + 4);
   y += 1;
-  setColor(doc.setFillColor.bind(doc), COLORS.accent);
-  doc.rect(margin, y - pLines.length * pLineH + 1.2, 0.8, pLines.length * pLineH, 'F');
   setColor(doc.setTextColor.bind(doc), COLORS.text);
   doc.text(pLines, margin + 4, y, { maxWidth: maxW - 6 });
   y += pLines.length * pLineH + 5;
