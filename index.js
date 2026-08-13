@@ -13,9 +13,9 @@
 
       const birth = document.getElementById('p-birth');
       if (lang === 'en') {
-        birth.innerHTML = '<svg class="pc-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg> 17 Mar 1997 &middot; Italian';
+        birth.innerHTML = '<svg class="pc-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg> 17 Mar 1997 · Italian';
       } else {
-        birth.innerHTML = '<svg class="pc-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg> 17 Mar 1997 &middot; Italiano';
+        birth.innerHTML = '<svg class="pc-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg> 17 Mar 1997 · Italiano';
       }
     }
 
@@ -28,7 +28,7 @@
       document.getElementById('theme-label').textContent = currentTheme === 'dark' ? 'theme' : 'theme';
     }
 
-    // PDF download &mdash; professional formatting pass
+    // PDF download — professional formatting pass
     function downloadPDF() {
       const { jsPDF } = window.jspdf;
       const doc = new jsPDF({ unit: 'mm', format: 'a4' });
@@ -139,7 +139,7 @@
         const lines = doc.splitTextToSize(text, maxW - bulletIndent);
         const lineHeight = fontSize * 0.42;
         checkPageBreak(lines.length * lineHeight + gap);
-        doc.text('&middot;', margin, y);
+        doc.text('•', margin, y);
         doc.text(lines, margin + bulletIndent, y);
         y += lines.length * lineHeight + gap;
       }
@@ -239,8 +239,8 @@
       addSectionHeader(isEn ? 'Work Experience' : 'Esperienza Lavorativa');
 
       addEntryHeader(
-        'DATA & AI SPECIALIST &mdash; Deloitte NextHub S.r.l. S.B.',
-        isEn ? 'Jan 2026 &ndash; Present' : 'Gen 2026 &ndash; Presente'
+        'DATA & AI SPECIALIST — Deloitte NextHub S.r.l. S.B.',
+        isEn ? 'Jan 2026 – Present' : 'Gen 2026 – Presente'
       );
       if (isEn) {
         addBullet('Data Analysis & Data Science: Advanced analytical tasks focused on forecasting and clustering algorithms. [Python, Pandas, NumPy, Plotly, Statsmodels, Scikit-learn]');
@@ -257,8 +257,8 @@
       }
 
       addEntryHeader(
-        isEn ? 'FULL STACK DEVELOPER (Internship & Freelance) &mdash; Fragments S.r.l.' : 'STAGE E COLLABORAZIONE &mdash; FULL STACK DEVELOPER &mdash; Fragments S.r.l.',
-        isEn ? 'Mar 2021 &ndash; Dec 2021' : 'Mar 2021 &ndash; Dic 2021'
+        isEn ? 'FULL STACK DEVELOPER (Internship & Freelance) — Fragments S.r.l.' : 'STAGE E COLLABORAZIONE — FULL STACK DEVELOPER — Fragments S.r.l.',
+        isEn ? 'Mar 2021 – Dec 2021' : 'Mar 2021 – Dic 2021'
       );
       if (isEn) {
         addBullet('Serverless Web Applications on AWS and Node.js. [React, Redux, Axios, Lambda Functions, RESTful APIs, MySQL, MongoDB]');
@@ -276,7 +276,7 @@
 
       addEntryHeader(
         isEn ? 'M.Sc. in Artificial Intelligence and Data Engineering (LM-32)' : 'Laurea Magistrale in Artificial Intelligence and Data Engineering (LM-32)',
-        isEn ? 'Aug 2021 &ndash; Oct 2025' : 'Ago 2021 &ndash; Ott 2025',
+        isEn ? 'Aug 2021 – Oct 2025' : 'Ago 2021 – Ott 2025',
         24 // institution/grade line, thesis line, project link and sub-label follow
       );
       addText(isEn ? 'University of Pisa   |   Final Grade: 108/110' : 'Universit\u00e0 di Pisa   |   Valutazione: 108/110', { fontSize: 8, color: COLORS.gray, gap: 2 });
@@ -322,7 +322,7 @@
 
       addEntryHeader(
         isEn ? 'B.Sc. in Computer Engineering (L-8)' : 'Laurea Triennale in Ingegneria Informatica (L-8)',
-        isEn ? 'Sep 2015 &ndash; Jul 2021' : 'Set 2015 &ndash; Lug 2021',
+        isEn ? 'Sep 2015 – Jul 2021' : 'Set 2015 – Lug 2021',
         22 // institution line + sub-label + first bullet all belong together
       );
       addText(isEn ? 'Politecnico di Torino' : 'Politecnico di Torino', { fontSize: 8, color: COLORS.gray, gap: 3 });
@@ -382,7 +382,7 @@
         doc.setFont('helvetica', 'normal');
         doc.setFontSize(7.5);
         doc.setTextColor(...COLORS.faint);
-        doc.text('Luca Di Giacomo &mdash; Curriculum Vitae', margin, pageH - 9);
+        doc.text('Luca Di Giacomo — Curriculum Vitae', margin, pageH - 9);
         doc.text(`${i} / ${totalPages}`, pageW - margin, pageH - 9, { align: 'right' });
       }
 
