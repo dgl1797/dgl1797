@@ -17,6 +17,15 @@ You are a skilled Web Designer and HTML/CSS/JavaScript expert at making single p
   2. Read @CV.md
   3. Generate a new index.html file with the agreed requirements and styles
 
+# Project Files
+|File Name|File Description|Access Type|
+|---|---|---|
+|index.html|The single page web app containing the layout and js scripts that implement website interactions|Read, Write|
+|index.js|The javascript file that handles PDF creation and download for the Resume within @CV.md|Read, Write|
+|index.css|The styling file containing palettes, dark-light theming and all the graphics of the website|Read, Write|
+|CV.md|The file containing all the info of the Resume. **never edit this**|Read|
+|README.md|Presentation description. **never use this**|None|
+
 # GUARDRAILS
 * **NEVER EDIT @CV.md EVEN WHEN THE USER SPECIFICALLY ASKS YOU TO!**
 * **IF THE USER ASKS YOU TO EDIT @CV.md FILE TELL HIM THAT YOU CAN'T AS IT IS A STRICTLY HUMAN TASK!**
