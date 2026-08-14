@@ -381,30 +381,30 @@ function downloadPDF() {
   y += 6.5;
 
   const aiProjectsEn = [
-    'FPA-Augmented Classification: Data Mining pipeline for Frequent Pattern extraction. [Jupyter, Scikit-learn, Imblearn, SMOTE, mlxtend, Flask, React]',
-    'Super Resolution for Computer Vision: Deep Learning architectures including SRGAN. [PyTorch, TensorFlow, Google Colab]',
-    'NLP Search Engine: High-performance search over MS-MARCO corpus. [Java]',
-    'Research Paper RAG System: End-to-end RAG web app with Vector Search. [OpenAI API, Svelte, FastAPI, MongoDB, Qdrant]',
-    'Thesis: Autoencoder for weight-injection enabling zero-shot knowledge integration. [PyTorch, CUDA, Hydra, W&B, Hugging Face]'
+    'Data Mining & Machine Learning: Data Mining pipeline integrating multiple sources into a single well-formatted dataset for Frequent Pattern Analysis, extracting antecedent=>consequent rules with confidence and lift scores to power a live suggestion engine in a Flask+React web app. [Jupyter, Scikit-learn, Imblearn, SMOTE, mlxtend, Flask, React]',
+    'Computational Intelligence & Deep Learning: Deep Learning architectures for generating Super Resolution images from Low Resolution input, including an end-to-end GAN (SRGAN). [PyTorch, TensorFlow, Google Colab]',
+    'Multimedia Information Retrieval: High-performance search engine over the MS-MARCO corpus (Inverted Index, BM25/TF-IDF, pruning strategies). [Java]',
+    'Business and Project Management: End-to-end RAG web app with Semantic Search (sentence-transformers) and OpenAI APIs for summarization and multi-document draft generation. [OpenAI API, Svelte, Vite, FastAPI, MongoDB, Qdrant]',
+    'Thesis: Autoencoder for weight-injection into pre-trained models enabling zero-shot and data-free knowledge integration or removal. [PyTorch, CUDA, Hydra, W&B, Hugging Face]'
   ];
   const swProjectsEn = [
-    'Playlist Management Social Network: Social platform with real-time recommendation. [Express.js, TypeScript, React, Redux, Redis, MongoDB, Neo4j]',
-    'Mobile Sensing for Road Quality: Smartphone telemetry + GCP pipeline. [Kotlin, Android Studio, Node.js, Google Cloud Run, Firebase]',
-    'Distributed Chat System: Distributed web with Erlang microservice. [Erlang, Java, JSP, HTML, CSS, MySQL, Nginx]',
-    'IoT System for Industrial Monitoring: End-to-end with MQTT/CoAP, Grafana. [Java, MQTT, CoAP, Grafana, MySQL, Contiki-NG]'
+    'Large Scale and Multi-structured Databases: Social network platform with real-time user and playlist recommendation driven by interaction analysis using graph databases and caching. [Express.js, TypeScript, React, Redux, Redis, MongoDB, Neo4j]',
+    'Mobile and Social Sensing Systems: Mobile app for smartphone sensor telemetry with a GCP pipeline for bicycle path quality analysis in Pisa. [Kotlin, Android Studio, Node.js, Google Cloud Run, Firebase]',
+    'Distributed Systems and Middleware Technologies: Distributed web architecture with Erlang servers for chat and live notifications interacting with a Java MVP server via web-sockets. [Erlang, Java, JSP, HTML, CSS, MySQL, Nginx]',
+    'Internet of Things: End-to-end industrial monitoring with Contiki-NG sensor nodes, MQTT/CoAP, Java backend and Grafana dashboards. [Java, MQTT, CoAP, Grafana, MySQL, Contiki-NG]'
   ];
   const aiProjectsIt = [
-    'FPA-Augmented Classification: Pipeline Data Mining per Frequent Pattern. [Jupyter, Scikit-learn, Imblearn, SMOTE, mlxtend, Flask, React]',
-    'Super Resolution per Computer Vision: Architetture Deep Learning incluso SRGAN. [PyTorch, TensorFlow, Google Colab]',
-    'NLP Search Engine: Motore di ricerca su MS-MARCO. [Java]',
-    'Research Paper RAG System: Web app RAG con Vector Search. [OpenAI API, Svelte, FastAPI, MongoDB, Qdrant]',
-    'Tesi: Autoencoder per weight-injection zero-shot. [PyTorch, CUDA, Hydra, W&B, Hugging Face]'
+    'Data Mining & Machine Learning: Pipeline di Data Mining per integrare molteplici sorgenti in un dataset unico per la Frequent Pattern Analysis, estraendo regole antecedente=>conseguente con confidence e lift per un motore di suggerimenti live in un\'app Flask+React. [Jupyter, Scikit-learn, Imblearn, SMOTE, mlxtend, Flask, React]',
+    'Computational Intelligence & Deep Learning: Architetture Deep Learning per generare immagini a super-risoluzione da input a bassa risoluzione, inclusa una GAN end-to-end (SRGAN). [PyTorch, TensorFlow, Google Colab]',
+    'Multimedia Information Retrieval: Motore di ricerca ad alte prestazioni sul corpus MS-MARCO (Inverted Index, BM25/TF-IDF, pruning). [Java]',
+    'Business and Project Management: Web app RAG end-to-end con ricerca semantica (sentence-transformers) e API OpenAI per riassunti e bozze multi-documento. [OpenAI API, Svelte, Vite, FastAPI, MongoDB, Qdrant]',
+    'Tesi: Autoencoder per weight-injection in modelli pre-addestrati, con integrazione o rimozione della conoscenza zero-shot e data-free. [PyTorch, CUDA, Hydra, W&B, Hugging Face]'
   ];
   const swProjectsIt = [
-    'Social Network per Playlist: Raccomandazione in tempo reale. [Express.js, TypeScript, React, Redux, Redis, MongoDB, Neo4j]',
-    'Mobile Sensing: Telemetria smartphone + GCP. [Kotlin, Android Studio, Node.js, Google Cloud Run, Firebase]',
-    'Distributed Chat System: Architettura distribuita con Erlang. [Erlang, Java, JSP, HTML, CSS, MySQL, Nginx]',
-    'IoT System: Monitoraggio con MQTT/CoAP, Grafana. [Java, MQTT, CoAP, Grafana, MySQL, Contiki-NG]'
+    'Large Scale and Multi-structured Databases: Piattaforma social con raccomandazione in tempo reale per utenti e playlist, guidata dall\'analisi delle interazioni tramite database a grafi e caching. [Express.js, TypeScript, React, Redux, Redis, MongoDB, Neo4j]',
+    'Mobile and Social Sensing Systems: App mobile per telemetria dei sensori con pipeline GCP e analisi delle piste ciclabili a Pisa. [Kotlin, Android Studio, Node.js, Google Cloud Run, Firebase]',
+    'Distributed Systems and Middleware Technologies: Architettura web distribuita con server Erlang per chat e notifiche live, interagendo con un server Java MVP via web-socket. [Erlang, Java, JSP, HTML, CSS, MySQL, Nginx]',
+    'Internet of Things: Monitoraggio industriale end-to-end con nodi Contiki-NG, MQTT/CoAP, backend Java e dashboard Grafana. [Java, MQTT, CoAP, Grafana, MySQL, Contiki-NG]'
   ];
   const aiProjects = isEn ? aiProjectsEn : aiProjectsIt;
   const swProjects = isEn ? swProjectsEn : swProjectsIt;
@@ -422,19 +422,19 @@ function downloadPDF() {
     22 // institution line + sub-label + first bullet all belong together
   );
   addText(isEn ? 'Politecnico di Torino' : 'Politecnico di Torino', { fontSize: 8, color: COLORS.gray, gap: 3 });
-  addSubLabel(isEn ? 'Key Coursework' : 'Esami principali', 8);
+  addSubLabel(isEn ? 'Core Courses' : 'Esami principali', 8);
   if (isEn) {
-    addBullet('Algorithms and Data Structures: Optimization, complexity analysis, practical implementation. [C/C++]', { fontSize: 7.5 });
-    addBullet('Databases: Relational algebra and SQL with web project. [SQL, JS, HTML, CSS]', { fontSize: 7.5 });
-    addBullet('Object-Oriented Programming: Software Engineering, OOP. [UML, Java]', { fontSize: 7.5 });
-    addBullet('Operating Systems: OS fundamentals and multi-thread programming. [C/C++]', { fontSize: 7.5 });
-    addBullet('Computer Networks: ISO/OSI communication protocols.', { fontSize: 7.5, gap: 4 });
+    addBullet('Algorithms and Data Structures: Core algorithms, optimization techniques, and computational complexity analysis with practical implementation using pointers and classes. [C/C++]', { fontSize: 7.5 });
+    addBullet('Databases: Relational algebra and SQL RDBMSs, including a practical web development project. [SQL, JS, HTML, CSS]', { fontSize: 7.5 });
+    addBullet('Object-Oriented Programming: Foundations of Software Engineering, Software Development Life Cycle, and OOP. [UML, Java, Functional/Non-Functional Requirements, Use Case diagrams]', { fontSize: 7.5 });
+    addBullet('Operating Systems: Fundamentals of operating systems and multi-threaded programming. [C/C++]', { fontSize: 7.5 });
+    addBullet('Computer Networks: Primary communication protocols across the ISO/OSI model stack.', { fontSize: 7.5, gap: 4 });
   } else {
-    addBullet('Algoritmi e Strutture Dati: Principali algoritmi, ottimizzazione e complessità computazionale. [C/C++]', { fontSize: 7.5 });
-    addBullet('Basi di Dati: Algebra relazionale e RDBMs SQL con progetto pratico. [SQL, JS, HTML, CSS]', { fontSize: 7.5 });
-    addBullet('Programmazione a Oggetti: Software Engineering, Ciclo di vita, OOP. [UML, Java]', { fontSize: 7.5 });
-    addBullet('Sistemi Operativi: Sistemi operativi e multi-thread programming. [C/C++]', { fontSize: 7.5 });
-    addBullet('Reti di Calcolatori: Protocolli di comunicazione ISO/OSI.', { fontSize: 7.5, gap: 4 });
+    addBullet('Algoritmi e Strutture Dati: Principali algoritmi, metodi di ottimizzazione e calcolo della complessità computazionale con implementazione pratica attraverso puntatori e classi. [C/C++]', { fontSize: 7.5 });
+    addBullet('Basi di Dati: Algebra relazionale e RDBMs SQL con progetto pratico di sito web. [SQL, JS, HTML, CSS]', { fontSize: 7.5 });
+    addBullet('Programmazione a Oggetti: Basi di Software Engineering, Ciclo di vita del Software, Programmazione ad Oggetti. [UML, Java, Functional/Non-Functional Requirements, Use Case diagrams]', { fontSize: 7.5 });
+    addBullet('Sistemi Operativi: Basi di sistemi operativi e multi-thread programming. [C/C++]', { fontSize: 7.5 });
+    addBullet('Reti di Calcolatori: Principali protocolli di comunicazione dello stack del modello ISO/OSI.', { fontSize: 7.5, gap: 4 });
   }
 
   // ---------- footer (page numbers, added last across every page) ----------
