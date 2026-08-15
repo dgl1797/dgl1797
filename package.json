@@ -1,0 +1,12 @@
+{
+  "name": "dgl1797-personal-site",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Personal website of Luca Di Giacomo — static single page app with Puppeteer-generated CV PDFs",
+  "scripts": {
+    "generate:pdf": "node scripts/generate-cv-pdf.js"
+  },
+  "devDependencies": {
+    "puppeteer": "^24.15.0"
+  }
+}
