@@ -1,0 +1,857 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Luca Di Giacomo — Curriculum Vitae</title>
+  <style>
+    /* ============================================================
+       CV page — print-ready A4 layout (rendered with Puppeteer)
+       Professional card/pill design system
+       ============================================================ */
+    :root {
+      --navy: #1e2a47;
+      --navy-light: #2c3e63;
+      --accent: #3d5a99;
+      --ink: #232b3d;
+      --ink-soft: #4a5468;
+      --ink-faint: #6d7789;
+      --card-bg: #f6f8fc;
+      --card-border: #dbe2ef;
+      --pill-bg: #e9eff8;
+      --pill-border: #c9d6ea;
+      --pill-ink: #2c3e63;
+      --rule: #d3dbe8;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+      background: #ffffff;
+      color: var(--ink);
+      font-size: 9.2pt;
+      line-height: 1.5;
+    }
+
+    .cv {
+      width: 794px;
+      margin: 0 auto;
+      background: #ffffff;
+      padding: 6px 46px 10px;
+    }
+
+    /* ---------------- Header banner ---------------- */
+    .cv-header {
+      background: linear-gradient(135deg, var(--navy) 0%, var(--navy-light) 70%, var(--accent) 100%);
+      color: #ffffff;
+      border-radius: 10px;
+      padding: 20px 26px 16px;
+      margin-bottom: 16px;
+      page-break-inside: avoid;
+      break-inside: avoid;
+      -webkit-print-color-adjust: exact;
+      print-color-adjust: exact;
+    }
+
+    .cv-name {
+      font-size: 20pt;
+      font-weight: 700;
+      letter-spacing: 0.03em;
+      line-height: 1.15;
+    }
+
+    .cv-role {
+      font-size: 10.5pt;
+      font-weight: 400;
+      color: #ccd9f0;
+      margin-top: 3px;
+    }
+
+    .cv-contacts {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 3px 0;
+      margin-top: 11px;
+      padding-top: 10px;
+      border-top: 1px solid rgba(255, 255, 255, 0.25);
+      font-size: 7.9pt;
+      color: #dbe4f5;
+    }
+
+    .cv-contacts span {
+      white-space: nowrap;
+    }
+
+    .cv-contacts span + span::before {
+      content: "\2022";
+      margin: 0 7px;
+      color: rgba(255, 255, 255, 0.45);
+    }
+
+    .cv-contacts a { color: #ffffff; text-decoration: none; }
+
+    /* ---------------- Sections ---------------- */
+    .cv-section { margin-bottom: 14px; }
+
+    .cv-section-title {
+      font-size: 10pt;
+      font-weight: 700;
+      color: var(--navy-light);
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      padding-bottom: 4px;
+      border-bottom: 1.5px solid var(--rule);
+      margin-bottom: 9px;
+      page-break-after: avoid;
+      break-after: avoid;
+    }
+
+    .cv-summary {
+      color: var(--ink-soft);
+      text-align: justify;
+    }
+
+    .cv-summary strong { color: var(--navy-light); }
+
+    /* ---------------- Cards ---------------- */
+    .card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-left: 3px solid var(--accent);
+      border-radius: 8px;
+      padding: 12px 16px;
+      margin-bottom: 10px;
+      page-break-inside: avoid;
+      break-inside: avoid;
+      -webkit-print-color-adjust: exact;
+      print-color-adjust: exact;
+    }
+
+    .card-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 14px;
+      margin-bottom: 2px;
+    }
+
+    .card-title {
+      font-size: 10pt;
+      font-weight: 700;
+      color: var(--navy);
+    }
+
+    .card-org {
+      font-size: 9pt;
+      font-weight: 600;
+      color: var(--accent);
+    }
+
+    .card-date {
+      font-size: 8pt;
+      font-weight: 600;
+      color: #ffffff;
+      background: var(--navy-light);
+      border-radius: 999px;
+      padding: 2px 10px;
+      white-space: nowrap;
+      -webkit-print-color-adjust: exact;
+      print-color-adjust: exact;
+    }
+
+    .card-intro {
+      color: var(--ink-soft);
+      margin: 4px 0 6px;
+    }
+
+    .card ul {
+      list-style: none;
+      margin-top: 4px;
+    }
+
+    .card li {
+      position: relative;
+      padding-left: 14px;
+      margin-bottom: 6px;
+      page-break-inside: avoid;
+      break-inside: avoid;
+    }
+
+    .card li:last-child { margin-bottom: 0; }
+
+    .card li::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 0.5em;
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--accent);
+      -webkit-print-color-adjust: exact;
+      print-color-adjust: exact;
+    }
+
+    .card li strong { color: var(--navy); }
+
+    .grade-badge {
+      display: inline-block;
+      font-size: 8pt;
+      font-weight: 700;
+      color: var(--navy-light);
+      background: var(--pill-bg);
+      border: 1px solid var(--pill-border);
+      border-radius: 999px;
+      padding: 1px 10px;
+      margin-left: 4px;
+      -webkit-print-color-adjust: exact;
+      print-color-adjust: exact;
+    }
+
+    .thesis-line {
+      color: var(--ink-soft);
+      margin-top: 3px;
+      font-size: 8.8pt;
+    }
+
+    .thesis-line em { color: var(--navy-light); font-weight: 600; font-style: normal; }
+
+    /* ---------------- Pills ---------------- */
+    .pills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 4px;
+      margin-top: 4px;
+    }
+
+    .pill {
+      display: inline-block;
+      font-size: 7.3pt;
+      font-weight: 600;
+      color: var(--pill-ink);
+      background: var(--pill-bg);
+      border: 1px solid var(--pill-border);
+      border-radius: 999px;
+      padding: 1px 8px;
+      line-height: 1.5;
+      white-space: nowrap;
+      -webkit-print-color-adjust: exact;
+      print-color-adjust: exact;
+    }
+
+    /* ---------------- Projects ---------------- */
+    .projects-note {
+      font-size: 8.6pt;
+      color: var(--ink-soft);
+      margin-bottom: 8px;
+    }
+
+    .projects-note a { color: var(--accent); font-weight: 600; }
+
+    .projects-group {
+      font-size: 8.8pt;
+      font-weight: 700;
+      color: var(--navy-light);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin: 8px 0 6px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      page-break-after: avoid;
+      break-after: avoid;
+    }
+
+    .projects-group::after {
+      content: "";
+      flex: 1;
+      height: 1px;
+      background: var(--rule);
+    }
+
+    .project {
+      background: #ffffff;
+      border: 1px solid var(--card-border);
+      border-radius: 8px;
+      padding: 9px 14px;
+      margin-bottom: 7px;
+      page-break-inside: avoid;
+      break-inside: avoid;
+    }
+
+    .project-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 10px;
+      margin-bottom: 2px;
+    }
+
+    .project-title {
+      font-size: 9pt;
+      font-weight: 700;
+      color: var(--navy);
+    }
+
+    .project p {
+      color: var(--ink-soft);
+      font-size: 8.6pt;
+      text-align: justify;
+    }
+
+    .project em { color: var(--navy-light); }
+
+    .project .pills { margin-top: 5px; }
+
+    /* ---------------- Skills table ---------------- */
+    .skills-table {
+      width: 100%;
+      border-collapse: separate;
+      border-spacing: 0;
+      border: 1px solid var(--card-border);
+      border-radius: 8px;
+      overflow: hidden;
+      page-break-inside: avoid;
+      break-inside: avoid;
+    }
+
+    .skills-table td {
+      padding: 9px 14px;
+      vertical-align: middle;
+      border-bottom: 1px solid var(--card-border);
+    }
+
+    .skills-table tr:last-child td { border-bottom: none; }
+
+    .skills-table td:first-child {
+      width: 158px;
+      font-weight: 700;
+      font-size: 8.8pt;
+      color: #ffffff;
+      background: var(--navy-light);
+      -webkit-print-color-adjust: exact;
+      print-color-adjust: exact;
+    }
+
+    .skills-table td:last-child { background: var(--card-bg); }
+
+    .skills-table .pills { margin-top: 0; }
+
+    /* ---------------- Languages table ---------------- */
+    .lang-table {
+      width: 100%;
+      border-collapse: separate;
+      border-spacing: 0;
+      border: 1px solid var(--card-border);
+      border-radius: 8px;
+      overflow: hidden;
+      page-break-inside: avoid;
+      break-inside: avoid;
+    }
+
+    .lang-table td {
+      padding: 7px 14px;
+      font-size: 8.8pt;
+      background: var(--card-bg);
+      width: 50%;
+      -webkit-print-color-adjust: exact;
+      print-color-adjust: exact;
+    }
+
+    .lang-table td + td { border-left: 1px solid var(--card-border); }
+
+    .lang-table strong { color: var(--navy); }
+
+    .lang-level {
+      display: inline-block;
+      font-size: 7.6pt;
+      font-weight: 700;
+      color: var(--pill-ink);
+      background: var(--pill-bg);
+      border: 1px solid var(--pill-border);
+      border-radius: 999px;
+      padding: 0 9px;
+      margin-left: 6px;
+      -webkit-print-color-adjust: exact;
+      print-color-adjust: exact;
+    }
+
+    /* ---------------- GDPR ---------------- */
+    .cv-gdpr {
+      margin-top: 12px;
+      padding-top: 8px;
+      border-top: 1px solid var(--rule);
+      font-size: 7.4pt;
+      color: var(--ink-faint);
+      font-style: italic;
+      text-align: center;
+    }
+
+    a { color: var(--accent); }
+
+    @page { size: A4; margin: 0; }
+
+    @media print {
+      body { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ================================================================
+       ENGLISH VERSION
+       ================================================================ -->
+  <div class="cv" id="cv-en">
+
+    <header class="cv-header">
+      <div class="cv-name">Luca Di Giacomo</div>
+      <div class="cv-role">AI &amp; Data Specialist&ensp;|&ensp;M.Sc. Artificial Intelligence &amp; Data Engineering</div>
+      <div class="cv-contacts">
+        <span>Born March 17, 1997</span>
+        <span>Italian</span>
+        <span>(+39) 3405133275</span>
+        <span><a href="mailto:digiacomoluca1797@gmail.com">digiacomoluca1797@gmail.com</a></span>
+        <span><a href="https://github.com/dgl1797">github.com/dgl1797</a></span>
+        <span><a href="https://www.linkedin.com/in/luca-di-giacomo-78267a38b">LinkedIn</a></span>
+        <span><a href="https://dgl1797.github.io/dgl1797/">dgl1797.github.io/dgl1797</a></span>
+      </div>
+    </header>
+
+    <section class="cv-section">
+      <h2 class="cv-section-title">Professional Summary</h2>
+      <p class="cv-summary"><strong>AI &amp; Software Engineer</strong> with a solid academic background from <strong>Politecnico di Torino</strong> (B.Sc. in Computer Engineering) and the <strong>University of Pisa</strong> (M.Sc. in Artificial Intelligence and Data Engineering). I combine advanced <strong>Software Engineering</strong> competencies (software architecture and clean code principles) with <strong>AI Engineering</strong> expertise (training, fine-tuning, and integrating advanced models). Backed by experience in both <strong>IT consulting and product development</strong>, I have built strong problem-solving abilities, a collaborative mindset, and high adaptability in quickly mastering new technology stacks.</p>
+    </section>
+
+    <section class="cv-section">
+      <h2 class="cv-section-title">Work Experience</h2>
+
+      <div class="card">
+        <div class="card-head">
+          <div>
+            <span class="card-title">Data &amp; AI Specialist</span>
+            &nbsp;—&nbsp;<span class="card-org">Deloitte NextHub S.r.l. S.B.</span>
+          </div>
+          <span class="card-date">Jan 2026 – Present</span>
+        </div>
+        <p class="card-intro">Currently working within the Data Analytics &amp; HR Innovation team at Deloitte NextHub, with core responsibilities including:</p>
+        <ul>
+          <li><strong>Data Analysis &amp; Data Science:</strong> advanced analytical tasks focused on forecasting and clustering algorithms.
+            <span class="pills"><span class="pill">Python</span><span class="pill">Pandas</span><span class="pill">NumPy</span><span class="pill">Plotly</span><span class="pill">Statsmodels</span><span class="pill">Scikit-learn</span></span>
+          </li>
+          <li><strong>Automation:</strong> script development to automate and optimize internal team workflows and processes.
+            <span class="pills"><span class="pill">Python</span><span class="pill">Streamlit</span><span class="pill">Pandas</span></span>
+          </li>
+          <li><strong>GenAI Technical Support:</strong> sharing technical know-how to maintain and optimize the Knowledge Base for internal agentic systems.
+            <span class="pills"><span class="pill">HTML</span><span class="pill">CSS</span><span class="pill">JavaScript</span><span class="pill">Markdown</span></span>
+          </li>
+          <li><strong>Prompt Engineering:</strong> designing prompts, skills, and context frameworks to integrate GenAI into exploratory data research and analysis in EDP systems.
+            <span class="pills"><span class="pill">Markdown</span><span class="pill">Python</span><span class="pill">Databricks</span></span>
+          </li>
+          <li><strong>Work Organization &amp; Management:</strong> utilizing enterprise and Microsoft toolstacks to manage concurrent tasks within an Agile/SCRUM framework.
+            <span class="pills"><span class="pill">MS Teams</span><span class="pill">MS Tasks</span><span class="pill">MS SharePoint</span></span>
+          </li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <div class="card-head">
+          <div>
+            <span class="card-title">Full Stack Developer (Internship &amp; Freelance)</span>
+            &nbsp;—&nbsp;<span class="card-org">Fragments S.r.l.</span>
+          </div>
+          <span class="card-date">Mar 2021 – Dec 2021</span>
+        </div>
+        <p class="card-intro">Curricular internship followed by a freelance contract focusing on client product development, with key responsibilities including:</p>
+        <ul>
+          <li>Development of <strong>Serverless</strong> Web Applications built on AWS and Node.js.
+            <span class="pills"><span class="pill">React</span><span class="pill">Redux</span><span class="pill">Axios</span><span class="pill">Lambda Functions</span><span class="pill">RESTful APIs</span><span class="pill">MySQL</span><span class="pill">MongoDB</span></span>
+          </li>
+          <li>Unit testing and bug fixing on management software products.
+            <span class="pills"><span class="pill">Jest</span><span class="pill">JavaScript</span><span class="pill">TypeScript</span></span>
+          </li>
+          <li>Agile/SCRUM development utilizing industry-standard tools.
+            <span class="pills"><span class="pill">Jira</span><span class="pill">Slack</span><span class="pill">GitHub</span><span class="pill">GitHub Actions</span></span>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="cv-section">
+      <h2 class="cv-section-title">Education &amp; Training</h2>
+
+      <div class="card">
+        <div class="card-head">
+          <div>
+            <span class="card-title">M.Sc. in Artificial Intelligence and Data Engineering (LM-32)</span>
+            <span class="grade-badge">108/110</span>
+          </div>
+          <span class="card-date">Aug 2021 – Oct 2025</span>
+        </div>
+        <div class="card-org">University of Pisa</div>
+        <p class="thesis-line"><em>Thesis:</em> Model Weight Learning as a Novel Paradigm in Computer Vision</p>
+        <p class="card-intro">Practical, project-oriented curriculum focused on team deliverables evaluated by academic faculty and industry professionals.</p>
+      </div>
+
+      <div class="card">
+        <div class="card-head">
+          <div>
+            <span class="card-title">B.Sc. in Computer Engineering (L-8)</span>
+          </div>
+          <span class="card-date">Sep 2015 – Jul 2021</span>
+        </div>
+        <div class="card-org">Politecnico di Torino</div>
+        <p class="card-intro"><strong>Core Courses:</strong></p>
+        <ul>
+          <li><strong>Algorithms and Data Structures:</strong> core algorithms, optimization techniques, and computational complexity analysis with practical implementation using pointers and classes.
+            <span class="pills"><span class="pill">C/C++</span></span>
+          </li>
+          <li><strong>Databases:</strong> relational algebra and SQL RDBMSs, including a practical web development project.
+            <span class="pills"><span class="pill">SQL</span><span class="pill">JS</span><span class="pill">HTML</span><span class="pill">CSS</span></span>
+          </li>
+          <li><strong>Object-Oriented Programming:</strong> foundations of Software Engineering, Software Development Life Cycle, and Object-Oriented Programming.
+            <span class="pills"><span class="pill">UML</span><span class="pill">Java</span><span class="pill">Functional/Non-Functional Requirements</span><span class="pill">Use Case diagrams</span></span>
+          </li>
+          <li><strong>Operating Systems:</strong> fundamentals of operating systems and multi-threaded programming.
+            <span class="pills"><span class="pill">C/C++</span></span>
+          </li>
+          <li><strong>Computer Networks:</strong> primary communication protocols across the ISO/OSI model stack.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="cv-section">
+      <h2 class="cv-section-title">Key Academic Projects — M.Sc.</h2>
+      <p class="projects-note">Team projects evaluated by academic faculty and industry professionals — full repository: <a href="https://github.com/dgl1797/University-of-Pisa-Projects">github.com/dgl1797/University-of-Pisa-Projects</a></p>
+
+      <h3 class="projects-group">AI Engineering</h3>
+
+      <div class="project">
+        <div class="project-head"><span class="project-title">Data Mining &amp; Machine Learning</span></div>
+        <p>Designed a Data Mining pipeline to integrate multiple sources into a single well-formatted dataset for <em>Frequent Pattern Analysis</em> in order to extract antecedent⇒consequent rules with relative confidence and lift scores, successively used to power a live suggestion engine integrated in a Flask+React web app. Engineered an innovative <em>synergy</em> metric (combining confidence and lift) integrated as a feature to optimize Machine Learning model training.</p>
+        <div class="pills"><span class="pill">Jupyter</span><span class="pill">Scikit-learn</span><span class="pill">Imblearn</span><span class="pill">SMOTE</span><span class="pill">mlxtend</span><span class="pill">Flask</span><span class="pill">React</span></div>
+      </div>
+
+      <div class="project">
+        <div class="project-head"><span class="project-title">Computational Intelligence &amp; Deep Learning</span></div>
+        <p>Designed, trained, and fine-tuned Deep Learning architectures for generating Super Resolution images from Low Resolution input, including an end-to-end implementation of a Generative Adversarial Network (<a href="https://arxiv.org/pdf/1609.04802.pdf">SRGAN</a>).</p>
+        <div class="pills"><span class="pill">PyTorch</span><span class="pill">TensorFlow</span><span class="pill">Google Colab</span></div>
+      </div>
+
+      <div class="project">
+        <div class="project-head"><span class="project-title">Multimedia Information Retrieval</span></div>
+        <p>Developed a high-performance search engine over large-scale document corpora (<a href="https://microsoft.github.io/msmarco/">MS-MARCO</a>), based on an <em>Inverted Index</em> architecture and BM25/TF-IDF ranking algorithms and pruning strategies.</p>
+        <div class="pills"><span class="pill">Java</span></div>
+      </div>
+
+      <div class="project">
+        <div class="project-head"><span class="project-title">Business and Project Management</span></div>
+        <p>Built an end-to-end Retrieval-Augmented Generation (RAG) web application for scraping, parsing, and loading of documents into Qdrant vector DB. Implemented Semantic Search with sentence-transformers over parsed scientific papers. Integrated OpenAI APIs for automated paper summarization and multi-document research draft generation.</p>
+        <div class="pills"><span class="pill">OpenAI API</span><span class="pill">Svelte + Vite</span><span class="pill">FastAPI</span><span class="pill">MongoDB</span><span class="pill">Qdrant</span></div>
+      </div>
+
+      <div class="project">
+        <div class="project-head"><span class="project-title">Thesis — Model Weight Learning as a Novel Paradigm in Computer Vision</span></div>
+        <p>Researched and implemented an autoencoder for <em>weight-injection</em> into pre-trained models, enabling <em>zero-shot</em> and <em>data-free</em> knowledge integration or removal.</p>
+        <div class="pills"><span class="pill">PyTorch</span><span class="pill">CUDA</span><span class="pill">Hydra</span><span class="pill">Weights &amp; Biases</span><span class="pill">Hugging Face</span></div>
+      </div>
+
+      <h3 class="projects-group">Software Engineering</h3>
+
+      <div class="project">
+        <div class="project-head"><span class="project-title">Large Scale and Multi-structured Databases</span></div>
+        <p>Designed and developed a social network platform centered around musical content. Built a real-time user and playlist recommendation engine driven by interaction analysis (likes and shares) using graph databases and caching solutions.</p>
+        <div class="pills"><span class="pill">Express.js</span><span class="pill">TypeScript</span><span class="pill">React</span><span class="pill">Redux</span><span class="pill">Redis</span><span class="pill">MongoDB</span><span class="pill">Neo4j</span></div>
+      </div>
+
+      <div class="project">
+        <div class="project-head"><span class="project-title">Mobile and Social Sensing Systems</span></div>
+        <p>Developed a mobile application for smartphone sensor telemetry collection integrated with a GCP pipeline. Managed data ingestion, aggregation, and quality index analysis for bicycle paths across the city of Pisa.</p>
+        <div class="pills"><span class="pill">Kotlin</span><span class="pill">Android Studio</span><span class="pill">Node.js</span><span class="pill">Google Cloud Run</span><span class="pill">Firebase</span></div>
+      </div>
+
+      <div class="project">
+        <div class="project-head"><span class="project-title">Distributed Systems and Middleware Technologies</span></div>
+        <p>Implemented a distributed web architecture integrating Erlang servers for distributed chat management and live notifications interacting with a Java MVP server through web-sockets.</p>
+        <div class="pills"><span class="pill">Erlang</span><span class="pill">Java</span><span class="pill">JSP</span><span class="pill">HTML</span><span class="pill">CSS</span><span class="pill">MySQL</span><span class="pill">Nginx</span></div>
+      </div>
+
+      <div class="project">
+        <div class="project-head"><span class="project-title">Internet of Things</span></div>
+        <p>Built an end-to-end industrial monitoring and control system. Simulated sensor nodes using Contiki-NG containers, integrated MQTT/CoAP protocols to communicate with a Java backend and MySQL database, and visualized operational telemetry via Grafana dashboards.</p>
+        <div class="pills"><span class="pill">Java</span><span class="pill">MQTT</span><span class="pill">CoAP</span><span class="pill">Grafana</span><span class="pill">MySQL</span><span class="pill">Contiki-NG</span></div>
+      </div>
+    </section>
+
+    <section class="cv-section">
+      <h2 class="cv-section-title">Technical Skills</h2>
+      <table class="skills-table">
+        <tr>
+          <td>Software Engineering</td>
+          <td>
+            <div class="pills">
+              <span class="pill">SQL</span><span class="pill">Node.js</span><span class="pill">Spring Boot</span><span class="pill">FastAPI</span><span class="pill">Flask</span><span class="pill">Java</span><span class="pill">JavaScript/TypeScript</span><span class="pill">Git</span><span class="pill">Docker</span><span class="pill">React.js</span><span class="pill">Angular</span><span class="pill">Python</span><span class="pill">C/C++</span><span class="pill">MySQL</span><span class="pill">MongoDB</span><span class="pill">Redis</span><span class="pill">Neo4j</span><span class="pill">Qdrant</span>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td>Artificial Intelligence</td>
+          <td>
+            <div class="pills">
+              <span class="pill">Machine Learning</span><span class="pill">Deep Learning</span><span class="pill">Pandas</span><span class="pill">NumPy</span><span class="pill">Scikit-learn</span><span class="pill">OpenCV</span><span class="pill">LLM</span><span class="pill">Computer Vision</span><span class="pill">NLP</span><span class="pill">RAG</span><span class="pill">Coding Agents (Skills, Tools, MCP, Prompt Engineering)</span><span class="pill">LangGraph</span>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td>Soft Skills</td>
+          <td>
+            <div class="pills">
+              <span class="pill">Teamwork</span><span class="pill">Executive Communication</span><span class="pill">Adaptability</span><span class="pill">Critical Thinking</span><span class="pill">Cross-functional Collaboration</span><span class="pill">Problem Solving</span><span class="pill">Creativity</span>
+            </div>
+          </td>
+        </tr>
+      </table>
+    </section>
+
+    <section class="cv-section">
+      <h2 class="cv-section-title">Languages</h2>
+      <table class="lang-table">
+        <tr>
+          <td><strong>Italian</strong><span class="lang-level">C2 — Native</span></td>
+          <td><strong>English</strong><span class="lang-level">C1 — Advanced</span></td>
+        </tr>
+      </table>
+    </section>
+
+    <p class="cv-gdpr">I authorize the processing of my personal data in compliance with the GDPR (EU Regulation 2016/679).</p>
+  </div>
+
+  <!-- ================================================================
+       ITALIAN VERSION
+       ================================================================ -->
+  <div class="cv" id="cv-it">
+
+    <header class="cv-header">
+      <div class="cv-name">Luca Di Giacomo</div>
+      <div class="cv-role">AI &amp; Data Specialist&ensp;|&ensp;Laurea Magistrale in Artificial Intelligence &amp; Data Engineering</div>
+      <div class="cv-contacts">
+        <span>Nato il 17/03/1997</span>
+        <span>Italiano</span>
+        <span>(+39) 3405133275</span>
+        <span><a href="mailto:digiacomoluca1797@gmail.com">digiacomoluca1797@gmail.com</a></span>
+        <span><a href="https://github.com/dgl1797">github.com/dgl1797</a></span>
+        <span><a href="https://www.linkedin.com/in/luca-di-giacomo-78267a38b">LinkedIn</a></span>
+        <span><a href="https://dgl1797.github.io/dgl1797/">dgl1797.github.io/dgl1797</a></span>
+      </div>
+    </header>
+
+    <section class="cv-section">
+      <h2 class="cv-section-title">Profilo Professionale</h2>
+      <p class="cv-summary"><strong>AI &amp; Software Engineer</strong> con un solido background accademico strutturato tra il <strong>Politecnico di Torino</strong> (Laurea Triennale in Ingegneria Informatica) e l'<strong>Università di Pisa</strong> (Laurea Magistrale in Artificial Intelligence and Data Engineering). Unisco competenze avanzate di <strong>Software Engineering</strong> (architettura del software e sviluppo pulito) e di <strong>AI Engineering</strong> (addestramento, fine-tuning e integrazione di modelli avanzati). Grazie all'esperienza maturata tra <strong>consulenza e sviluppo di prodotto</strong>, ho affinato spiccate capacità di problem solving, attitudine al lavoro di squadra e un'elevata flessibilità nell'apprendere e padroneggiare rapidamente nuovi stack tecnologici.</p>
+    </section>
+
+    <section class="cv-section">
+      <h2 class="cv-section-title">Esperienza Lavorativa</h2>
+
+      <div class="card">
+        <div class="card-head">
+          <div>
+            <span class="card-title">Data &amp; AI Specialist</span>
+            &nbsp;—&nbsp;<span class="card-org">Deloitte NextHub S.r.l. S.B.</span>
+          </div>
+          <span class="card-date">07/01/2026 – Attuale</span>
+        </div>
+        <p class="card-intro">Attualmente impiegato in Deloitte NextHub nel team di Data Analytics ed HR Innovation, con mansioni che includono:</p>
+        <ul>
+          <li><strong>Data Analysis &amp; Data Science:</strong> task di analisi avanzata orientati al forecasting e clustering.
+            <span class="pills"><span class="pill">Python</span><span class="pill">Pandas</span><span class="pill">NumPy</span><span class="pill">Plotly</span><span class="pill">Statsmodels</span><span class="pill">Scikit-learn</span></span>
+          </li>
+          <li><strong>Automation:</strong> sviluppo di script per l'automazione e l'efficientamento di processi interni al team.
+            <span class="pills"><span class="pill">Python</span><span class="pill">Streamlit</span><span class="pill">Pandas</span></span>
+          </li>
+          <li><strong>GenAI Technical Support:</strong> supporto tramite condivisione del know-how per il mantenimento e l'efficientamento della Knowledge Base di sistemi agentici interni.
+            <span class="pills"><span class="pill">HTML</span><span class="pill">CSS</span><span class="pill">JavaScript</span><span class="pill">Markdown</span></span>
+          </li>
+          <li><strong>Prompt Engineering:</strong> creazione di prompt, skills e contesti per introdurre la GenAI in processi di ricerca e analisi esplorativa sui dati in EDP.
+            <span class="pills"><span class="pill">Markdown</span><span class="pill">Python</span><span class="pill">Databricks</span></span>
+          </li>
+          <li><strong>Work Organization &amp; Management:</strong> organizzazione tramite strumenti aziendali e Microsoft per la gestione di task multipli in modalità Agile/SCRUM.
+            <span class="pills"><span class="pill">MS Teams</span><span class="pill">MS Tasks</span><span class="pill">MS SharePoint</span></span>
+          </li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <div class="card-head">
+          <div>
+            <span class="card-title">Full Stack Developer (Stage e Collaborazione Occasionale)</span>
+            &nbsp;—&nbsp;<span class="card-org">Fragments S.r.l.</span>
+          </div>
+          <span class="card-date">07/03/2021 – 28/12/2021</span>
+        </div>
+        <p class="card-intro">Attività di stage curriculare e successiva collaborazione occasionale nello sviluppo di prodotto per clienti, con task che includono:</p>
+        <ul>
+          <li>Sviluppo di Web App <strong>Serverless</strong> basate su AWS e NodeJS.
+            <span class="pills"><span class="pill">React</span><span class="pill">Redux</span><span class="pill">Axios</span><span class="pill">Lambda Functions</span><span class="pill">RESTful APIs</span><span class="pill">MySQL</span><span class="pill">MongoDB</span></span>
+          </li>
+          <li>Unit testing e bugfixing su prodotto software gestionale.
+            <span class="pills"><span class="pill">Jest</span><span class="pill">JavaScript</span><span class="pill">TypeScript</span></span>
+          </li>
+          <li>Sviluppo Agile/SCRUM attraverso strumenti professionali standard.
+            <span class="pills"><span class="pill">Jira</span><span class="pill">Slack</span><span class="pill">GitHub</span><span class="pill">GitHub Actions</span></span>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="cv-section">
+      <h2 class="cv-section-title">Istruzione e Formazione</h2>
+
+      <div class="card">
+        <div class="card-head">
+          <div>
+            <span class="card-title">Laurea Magistrale in Artificial Intelligence and Data Engineering (LM-32)</span>
+            <span class="grade-badge">108/110</span>
+          </div>
+          <span class="card-date">06/08/2021 – 02/10/2025</span>
+        </div>
+        <div class="card-org">Università degli Studi di Pisa</div>
+        <p class="thesis-line"><em>Tesi:</em> Model Weight Learning as a Novel Paradigm in Computer Vision</p>
+        <p class="card-intro">Percorso pratico orientato allo sviluppo di progetti di team valutati da personale docente e professionisti.</p>
+      </div>
+
+      <div class="card">
+        <div class="card-head">
+          <div>
+            <span class="card-title">Laurea Triennale in Ingegneria Informatica (L-8)</span>
+          </div>
+          <span class="card-date">Set 2015 – Lug 2021</span>
+        </div>
+        <div class="card-org">Politecnico di Torino</div>
+        <p class="card-intro"><strong>Esami principali:</strong></p>
+        <ul>
+          <li><strong>Algoritmi e Strutture Dati:</strong> principali algoritmi e metodi di ottimizzazione e calcolo della complessità computazionale con implementazione pratica attraverso puntatori e classi.
+            <span class="pills"><span class="pill">C/C++</span></span>
+          </li>
+          <li><strong>Basi di Dati:</strong> algebra relazionale e RDBMS SQL con progetto pratico di sito web.
+            <span class="pills"><span class="pill">SQL</span><span class="pill">JS</span><span class="pill">HTML</span><span class="pill">CSS</span></span>
+          </li>
+          <li><strong>Programmazione a Oggetti:</strong> basi di Software Engineering, ciclo di vita del software, programmazione ad oggetti.
+            <span class="pills"><span class="pill">UML</span><span class="pill">Java</span><span class="pill">Functional/Non-Functional Requirements</span><span class="pill">Use Case diagrams</span></span>
+          </li>
+          <li><strong>Sistemi Operativi:</strong> basi di sistemi operativi e multi-thread programming.
+            <span class="pills"><span class="pill">C/C++</span></span>
+          </li>
+          <li><strong>Reti di Calcolatori:</strong> principali protocolli di comunicazione dello stack del modello ISO/OSI.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="cv-section">
+      <h2 class="cv-section-title">Progetti Accademici Principali — Laurea Magistrale</h2>
+      <p class="projects-note">Progetti di team valutati da personale docente e professionisti — repository completa: <a href="https://github.com/dgl1797/University-of-Pisa-Projects">github.com/dgl1797/University-of-Pisa-Projects</a></p>
+
+      <h3 class="projects-group">AI Engineering</h3>
+
+      <div class="project">
+        <div class="project-head"><span class="project-title">Data Mining &amp; Machine Learning</span></div>
+        <p>Progettata una pipeline di Data Mining per integrare molteplici sorgenti in un unico dataset ben strutturato per l'analisi dei pattern frequenti (<em>Frequent Pattern Analysis</em>), al fine di estrarre regole antecedente⇒conseguente con i relativi punteggi di <em>confidence</em> e <em>lift</em>, successivamente utilizzati per alimentare un motore di suggerimenti live integrato in un'app web Flask+React. Sviluppata un'innovativa metrica di <em>sinergia</em> (combinando <em>confidence</em> e <em>lift</em>) integrata come feature per ottimizzare l'addestramento di modelli di Machine Learning.</p>
+        <div class="pills"><span class="pill">Jupyter</span><span class="pill">Scikit-learn</span><span class="pill">Imblearn</span><span class="pill">SMOTE</span><span class="pill">mlxtend</span><span class="pill">Flask</span><span class="pill">React</span></div>
+      </div>
+
+      <div class="project">
+        <div class="project-head"><span class="project-title">Computational Intelligence &amp; Deep Learning</span></div>
+        <p>Progettate, addestrate e ottimizzate (<em>fine-tuned</em>) architetture di Deep Learning per la generazione di immagini a super-risoluzione (<em>Super Resolution</em>) a partire da input a bassa risoluzione, inclusa un'implementazione end-to-end di una rete generativa avversaria (<a href="https://arxiv.org/pdf/1609.04802.pdf">SRGAN</a>).</p>
+        <div class="pills"><span class="pill">PyTorch</span><span class="pill">TensorFlow</span><span class="pill">Google Colab</span></div>
+      </div>
+
+      <div class="project">
+        <div class="project-head"><span class="project-title">Multimedia Information Retrieval</span></div>
+        <p>Sviluppato un motore di ricerca ad alte prestazioni su corpora documentali su larga scala (<a href="https://microsoft.github.io/msmarco/">MS-MARCO</a>), basato su un'architettura a indice invertito (<em>Inverted Index</em>), algoritmi di ranking BM25/TF-IDF e strategie di <em>pruning</em>.</p>
+        <div class="pills"><span class="pill">Java</span></div>
+      </div>
+
+      <div class="project">
+        <div class="project-head"><span class="project-title">Business and Project Management</span></div>
+        <p>Realizzata un'applicazione web end-to-end di Generazione Aumentata da Recupero (RAG) per lo scraping, il parsing e il caricamento di documenti nel vector DB Qdrant. Implementata la ricerca semantica con <em>sentence-transformers</em> su articoli scientifici analizzati. Integrate le API di OpenAI per il riassunto automatizzato degli articoli e la generazione di bozze di ricerca multi-documento.</p>
+        <div class="pills"><span class="pill">OpenAI API</span><span class="pill">Svelte + Vite</span><span class="pill">FastAPI</span><span class="pill">MongoDB</span><span class="pill">Qdrant</span></div>
+      </div>
+
+      <div class="project">
+        <div class="project-head"><span class="project-title">Tesi — Model Weight Learning as a Novel Paradigm in Computer Vision</span></div>
+        <p>Ricercato e implementato un autoencoder per l'iniezione dei pesi (<em>weight-injection</em>) in modelli pre-addestrati, abilitando l'integrazione o la rimozione della conoscenza in modalità <em>zero-shot</em> e <em>data-free</em>.</p>
+        <div class="pills"><span class="pill">PyTorch</span><span class="pill">CUDA</span><span class="pill">Hydra</span><span class="pill">Weights &amp; Biases</span><span class="pill">Hugging Face</span></div>
+      </div>
+
+      <h3 class="projects-group">Software Engineering</h3>
+
+      <div class="project">
+        <div class="project-head"><span class="project-title">Large Scale and Multi-structured Databases</span></div>
+        <p>Progettata e sviluppata una piattaforma di social network incentrata su contenuti musicali. Realizzato un motore di raccomandazione in tempo reale per utenti e playlist, guidato dall'analisi delle interazioni (like e condivisioni) tramite database a grafi e soluzioni di caching.</p>
+        <div class="pills"><span class="pill">Express.js</span><span class="pill">TypeScript</span><span class="pill">React</span><span class="pill">Redux</span><span class="pill">Redis</span><span class="pill">MongoDB</span><span class="pill">Neo4j</span></div>
+      </div>
+
+      <div class="project">
+        <div class="project-head"><span class="project-title">Mobile and Social Sensing Systems</span></div>
+        <p>Sviluppata un'applicazione mobile per la raccolta della telemetria dei sensori dello smartphone integrata con una pipeline GCP. Gestite l'ingestione dei dati, l'aggregazione e l'analisi dell'indice di qualità delle piste ciclabili nella città di Pisa.</p>
+        <div class="pills"><span class="pill">Kotlin</span><span class="pill">Android Studio</span><span class="pill">Node.js</span><span class="pill">Google Cloud Run</span><span class="pill">Firebase</span></div>
+      </div>
+
+      <div class="project">
+        <div class="project-head"><span class="project-title">Distributed Systems and Middleware Technologies</span></div>
+        <p>Implementata un'architettura web distribuita che integra server Erlang per la gestione delle chat distribuite e delle notifiche live, interagendo con un server Java MVP tramite web-socket.</p>
+        <div class="pills"><span class="pill">Erlang</span><span class="pill">Java</span><span class="pill">JSP</span><span class="pill">HTML</span><span class="pill">CSS</span><span class="pill">MySQL</span><span class="pill">Nginx</span></div>
+      </div>
+
+      <div class="project">
+        <div class="project-head"><span class="project-title">Internet of Things</span></div>
+        <p>Realizzato un sistema di monitoraggio e controllo industriale end-to-end. Simulati nodi sensore utilizzando container Contiki-NG, integrati i protocolli MQTT/CoAP per comunicare con un backend Java e un database MySQL, e visualizzata la telemetria operativa tramite dashboard Grafana.</p>
+        <div class="pills"><span class="pill">Java</span><span class="pill">MQTT</span><span class="pill">CoAP</span><span class="pill">Grafana</span><span class="pill">MySQL</span><span class="pill">Contiki-NG</span></div>
+      </div>
+    </section>
+
+    <section class="cv-section">
+      <h2 class="cv-section-title">Competenze Tecniche</h2>
+      <table class="skills-table">
+        <tr>
+          <td>Software Engineering</td>
+          <td>
+            <div class="pills">
+              <span class="pill">SQL</span><span class="pill">Node.js</span><span class="pill">Spring Boot</span><span class="pill">FastAPI</span><span class="pill">Flask</span><span class="pill">Java</span><span class="pill">JavaScript/TypeScript</span><span class="pill">Git</span><span class="pill">Docker</span><span class="pill">React.js</span><span class="pill">Angular</span><span class="pill">Python</span><span class="pill">C/C++</span><span class="pill">MySQL</span><span class="pill">MongoDB</span><span class="pill">Redis</span><span class="pill">Neo4j</span><span class="pill">Qdrant</span>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td>Artificial Intelligence</td>
+          <td>
+            <div class="pills">
+              <span class="pill">Machine Learning</span><span class="pill">Deep Learning</span><span class="pill">Pandas</span><span class="pill">NumPy</span><span class="pill">Scikit-learn</span><span class="pill">OpenCV</span><span class="pill">LLM</span><span class="pill">Computer Vision</span><span class="pill">NLP</span><span class="pill">RAG</span><span class="pill">Coding Agents (Skills, Tools, MCP, Prompt Engineering)</span><span class="pill">LangGraph</span>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td>Competenze Trasversali</td>
+          <td>
+            <div class="pills">
+              <span class="pill">Teamwork</span><span class="pill">Comunicazione dei risultati</span><span class="pill">Flessibilità</span><span class="pill">Pensiero critico</span><span class="pill">Collaborazione cross-funzionale</span><span class="pill">Problem Solving</span><span class="pill">Creatività</span>
+            </div>
+          </td>
+        </tr>
+      </table>
+    </section>
+
+    <section class="cv-section">
+      <h2 class="cv-section-title">Competenze Linguistiche</h2>
+      <table class="lang-table">
+        <tr>
+          <td><strong>Italiano</strong><span class="lang-level">C2 — Madrelingua</span></td>
+          <td><strong>Inglese</strong><span class="lang-level">C1 — Livello Avanzato</span></td>
+        </tr>
+      </table>
+    </section>
+
+    <p class="cv-gdpr">Autorizzo il trattamento dei miei dati personali ai sensi del GDPR (Regolamento UE 2016/679). — I authorize the processing of my personal data in compliance with the GDPR (EU Regulation 2016/679).</p>
+  </div>
+
+</body>
+</html>

@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html lang="en" data-lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Luca Di Giacomo — AI & Data Specialist</title>
+  <meta name="description" content="Luca Di Giacomo — AI & Data Specialist | M.Sc. Artificial Intelligence & Data Engineering">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="index.css">
+</head>
+<body>
+
+  <!-- Starfield background -->
+  <canvas id="starfield" aria-hidden="true"></canvas>
+  <div class="nebula" aria-hidden="true"></div>
+
+  <!-- ===================== NAV ===================== -->
+  <header class="nav" id="top">
+    <nav class="nav-inner">
+      <a href="#top" class="brand">LDG<span class="brand-dot">.</span></a>
+      <ul class="nav-links">
+        <li><a href="#about"><span class="lang lang-en">About</span><span class="lang lang-it">Chi sono</span></a></li>
+        <li><a href="#skills"><span class="lang lang-en">Skills</span><span class="lang lang-it">Competenze</span></a></li>
+        <li><a href="#experience"><span class="lang lang-en">Experience</span><span class="lang lang-it">Esperienza</span></a></li>
+        <li><a href="#education"><span class="lang lang-en">Education</span><span class="lang lang-it">Istruzione</span></a></li>
+        <li><a href="#projects"><span class="lang lang-en">Projects</span><span class="lang lang-it">Progetti</span></a></li>
+        <li><a href="#contact"><span class="lang lang-en">Contact</span><span class="lang lang-it">Contatti</span></a></li>
+      </ul>
+      <div class="nav-actions">
+        <div class="lang-switch" role="group" aria-label="Language switch">
+          <button id="btn-en" class="lang-btn active" aria-pressed="true">EN</button>
+          <button id="btn-it" class="lang-btn" aria-pressed="false">IT</button>
+        </div>
+        <button class="nav-burger" id="nav-burger" aria-label="Menu">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <!-- ===================== HERO ===================== -->
+    <section class="hero" id="hero">
+      <div class="hero-content reveal">
+        <p class="hero-eyebrow">
+          <span class="lang lang-en">Hello, I am</span>
+          <span class="lang lang-it">Ciao, sono</span>
+        </p>
+        <h1 class="hero-name">Luca <span class="glow-text">Di Giacomo</span></h1>
+        <h2 class="hero-role">
+          <span class="lang lang-en">AI &amp; Data Specialist · M.Sc. Artificial Intelligence &amp; Data Engineering</span>
+          <span class="lang lang-it">AI &amp; Data Specialist · Laurea Magistrale in Artificial Intelligence &amp; Data Engineering</span>
+        </h2>
+        <p class="hero-tagline">
+          <span class="lang lang-en">Bridging Software Engineering and AI — from clean architectures to trained, fine-tuned and integrated models.</span>
+          <span class="lang lang-it">Un ponte tra Software Engineering e AI — da architetture pulite a modelli addestrati, ottimizzati e integrati.</span>
+        </p>
+        <div class="hero-cta">
+          <a href="#contact" class="btn btn-primary">
+            <span class="lang lang-en">Get in touch</span>
+            <span class="lang lang-it">Contattami</span>
+          </a>
+          <button id="download-cv" class="btn btn-ghost">
+            <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+            <span class="lang lang-en">Download CV</span>
+            <span class="lang lang-it">Scarica CV</span>
+          </button>
+        </div>
+        <div class="hero-links">
+          <a href="https://github.com/dgl1797" target="_blank" rel="noopener" aria-label="GitHub">
+            <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor"><path d="M12 .5C5.65.5.5 5.65.5 12c0 5.08 3.29 9.39 7.86 10.91.58.1.79-.25.79-.55v-2.15c-3.2.69-3.87-1.37-3.87-1.37-.52-1.33-1.28-1.68-1.28-1.68-1.04-.71.08-.7.08-.7 1.15.08 1.76 1.19 1.76 1.19 1.03 1.75 2.69 1.25 3.35.95.1-.74.4-1.25.72-1.54-2.55-.29-5.23-1.28-5.23-5.68 0-1.26.45-2.28 1.19-3.09-.12-.29-.52-1.46.11-3.05 0 0 .97-.31 3.18 1.18a11.06 11.06 0 0 1 5.79 0c2.2-1.49 3.17-1.18 3.17-1.18.63 1.59.24 2.76.12 3.05.74.81 1.18 1.83 1.18 3.09 0 4.41-2.69 5.38-5.25 5.67.41.35.77 1.04.77 2.1v3.11c0 .3.21.66.8.55A11.51 11.51 0 0 0 23.5 12C23.5 5.65 18.35.5 12 .5z"/></svg>
+          </a>
+          <a href="https://www.linkedin.com/in/luca-di-giacomo-78267a38b" target="_blank" rel="noopener" aria-label="LinkedIn">
+            <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor"><path d="M20.45 20.45h-3.55v-5.57c0-1.33-.03-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 1 1 0-4.13 2.06 2.06 0 0 1 0 4.13zM7.12 20.45H3.56V9h3.56v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.72v20.55C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.73V1.72C24 .77 23.2 0 22.22 0z"/></svg>
+          </a>
+          <a href="mailto:digiacomoluca1797@gmail.com" aria-label="Email">
+            <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 6L2 7"/></svg>
+          </a>
+        </div>
+      </div>
+      <div class="scroll-hint" aria-hidden="true">
+        <div class="scroll-orb"></div>
+      </div>
+    </section>
+
+    <div class="separator" aria-hidden="true"></div>
+
+    <!-- ===================== ABOUT ===================== -->
+    <section class="section" id="about">
+      <div class="section-inner">
+        <h2 class="section-title reveal">
+          <span class="section-index">01</span>
+          <span class="lang lang-en">About me</span>
+          <span class="lang lang-it">Chi sono</span>
+        </h2>
+        <div class="about-grid">
+          <div class="about-text reveal">
+            <p class="lang lang-en">
+              <strong>AI &amp; Software Engineer</strong> with a solid academic background from
+              <strong>Politecnico di Torino</strong> (B.Sc. in Computer Engineering) and the
+              <strong>University of Pisa</strong> (M.Sc. in Artificial Intelligence and Data Engineering).
+            </p>
+            <p class="lang lang-it">
+              <strong>AI &amp; Software Engineer</strong> con un solido background accademico strutturato tra il
+              <strong>Politecnico di Torino</strong> (Laurea Triennale in Ingegneria Informatica) e
+              l'<strong>Università di Pisa</strong> (Laurea Magistrale in Artificial Intelligence and Data Engineering).
+            </p>
+            <p class="lang lang-en">
+              I combine advanced <strong>Software Engineering</strong> competencies (software architecture and clean code principles)
+              with <strong>AI Engineering</strong> expertise (training, fine-tuning, and integrating advanced models).
+              Backed by experience in both <strong>IT consulting and product development</strong>, I have built strong
+              problem-solving abilities, a collaborative mindset, and high adaptability in quickly mastering new technology stacks.
+            </p>
+            <p class="lang lang-it">
+              Unisco competenze avanzate di <strong>Software Engineering</strong> (architettura del software e sviluppo pulito)
+              e di <strong>AI Engineering</strong> (addestramento, fine-tuning e integrazione di modelli avanzati).
+              Grazie all'esperienza maturata tra <strong>consulenza e sviluppo di prodotto</strong>, ho affinato spiccate capacità
+              di problem solving, attitudine al lavoro di squadra e un'elevata flessibilità nell'apprendere e padroneggiare
+              rapidamente nuovi stack tecnologici.
+            </p>
+          </div>
+          <aside class="about-card reveal">
+            <ul class="fact-list">
+              <li>
+                <span class="fact-label"><span class="lang lang-en">Based in</span><span class="lang lang-it">Nazionalità</span></span>
+                <span class="fact-value"><span class="lang lang-en">Italy</span><span class="lang lang-it">Italiana</span></span>
+              </li>
+              <li>
+                <span class="fact-label"><span class="lang lang-en">Born</span><span class="lang lang-it">Nato il</span></span>
+                <span class="fact-value"><span class="lang lang-en">March 17, 1997</span><span class="lang lang-it">17 marzo 1997</span></span>
+              </li>
+              <li>
+                <span class="fact-label"><span class="lang lang-en">Languages</span><span class="lang lang-it">Lingue</span></span>
+                <span class="fact-value"><span class="lang lang-en">Italian C2 · English C1</span><span class="lang lang-it">Italiano C2 · Inglese C1</span></span>
+              </li>
+              <li>
+                <span class="fact-label"><span class="lang lang-en">Current role</span><span class="lang lang-it">Ruolo attuale</span></span>
+                <span class="fact-value">Data &amp; AI Specialist @ Deloitte NextHub</span>
+              </li>
+            </ul>
+            <div class="soft-skills">
+              <h3><span class="lang lang-en">Soft skills</span><span class="lang lang-it">Competenze trasversali</span></h3>
+              <div class="chip-row">
+                <span class="chip"><span class="lang lang-en">Teamwork</span><span class="lang lang-it">Teamwork</span></span>
+                <span class="chip"><span class="lang lang-en">Executive Communication</span><span class="lang lang-it">Comunicazione dei risultati</span></span>
+                <span class="chip"><span class="lang lang-en">Adaptability</span><span class="lang lang-it">Flessibilità</span></span>
+                <span class="chip"><span class="lang lang-en">Critical Thinking</span><span class="lang lang-it">Pensiero critico</span></span>
+                <span class="chip"><span class="lang lang-en">Cross-functional Collaboration</span><span class="lang lang-it">Collaborazione cross-funzionale</span></span>
+                <span class="chip"><span class="lang lang-en">Problem Solving</span><span class="lang lang-it">Problem Solving</span></span>
+                <span class="chip"><span class="lang lang-en">Creativity</span><span class="lang lang-it">Creatività</span></span>
+              </div>
+            </div>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <div class="separator" aria-hidden="true"></div>
+
+    <!-- ===================== SKILLS ===================== -->
+    <section class="section" id="skills">
+      <div class="section-inner">
+        <h2 class="section-title reveal">
+          <span class="section-index">02</span>
+          <span class="lang lang-en">Technical skills</span>
+          <span class="lang lang-it">Competenze tecniche</span>
+        </h2>
+        <div class="skills-grid">
+          <div class="skill-card reveal">
+            <div class="skill-card-head">
+              <div class="skill-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+              </div>
+              <h3>Software Engineering</h3>
+            </div>
+            <div class="chip-row">
+              <span class="chip">SQL</span><span class="chip">Node.js</span><span class="chip">Spring Boot</span>
+              <span class="chip">FastAPI</span><span class="chip">Flask</span><span class="chip">Java</span>
+              <span class="chip">JavaScript/TypeScript</span><span class="chip">Git</span><span class="chip">Docker</span>
+              <span class="chip">React.js</span><span class="chip">Angular</span><span class="chip">Python</span>
+              <span class="chip">C/C++</span><span class="chip">MySQL</span><span class="chip">MongoDB</span>
+              <span class="chip">Redis</span><span class="chip">Neo4j</span><span class="chip">Qdrant</span>
+            </div>
+          </div>
+          <div class="skill-card reveal">
+            <div class="skill-card-head">
+              <div class="skill-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a4 4 0 0 1 4 4c0 .74-.2 1.43-.55 2.03A4.5 4.5 0 0 1 19 12.5c0 .34-.04.67-.11.99A4 4 0 0 1 17 21h-4"/><path d="M12 2a4 4 0 0 0-4 4c0 .74.2 1.43.55 2.03A4.5 4.5 0 0 0 5 12.5c0 .34.04.67.11.99A4 4 0 0 0 7 21h5"/><path d="M12 2v19"/></svg>
+              </div>
+              <h3>Artificial Intelligence</h3>
+            </div>
+            <div class="chip-row">
+              <span class="chip">Machine Learning</span><span class="chip">Deep Learning</span><span class="chip">Pandas</span>
+              <span class="chip">NumPy</span><span class="chip">Scikit-learn</span><span class="chip">OpenCV</span>
+              <span class="chip">LLM</span><span class="chip">Computer Vision</span><span class="chip">NLP</span>
+              <span class="chip">RAG</span>
+              <span class="chip"><span class="lang lang-en">Coding Agents (Skills, Tools, MCP, Prompt Engineering)</span><span class="lang lang-it">Coding Agents (Skills, Tools, MCP, Prompt Engineering)</span></span>
+              <span class="chip">LangGraph</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="separator" aria-hidden="true"></div>
+
+    <!-- ===================== EXPERIENCE ===================== -->
+    <section class="section" id="experience">
+      <div class="section-inner">
+        <h2 class="section-title reveal">
+          <span class="section-index">03</span>
+          <span class="lang lang-en">Work experience</span>
+          <span class="lang lang-it">Esperienza lavorativa</span>
+        </h2>
+        <div class="timeline">
+
+          <article class="timeline-item reveal">
+            <div class="timeline-marker" aria-hidden="true"></div>
+            <div class="timeline-card">
+              <p class="timeline-date">
+                <span class="lang lang-en">Jan 2026 – Present</span>
+                <span class="lang lang-it">Gen 2026 – Attuale</span>
+              </p>
+              <h3>Data &amp; AI Specialist</h3>
+              <p class="timeline-company">Deloitte NextHub S.r.l. S.B.</p>
+              <p class="lang lang-en">Working within the Data Analytics &amp; HR Innovation team, with core responsibilities including:</p>
+              <p class="lang lang-it">Impiegato nel team di Data Analytics ed HR Innovation, con mansioni che includono:</p>
+              <ul class="timeline-list">
+                <li>
+                  <span class="lang lang-en"><strong>Data Analysis &amp; Data Science:</strong> advanced analytical tasks focused on forecasting and clustering algorithms.</span>
+                  <span class="lang lang-it"><strong>Data Analysis &amp; Data Science:</strong> task di analisi avanzata orientati al forecasting e clustering.</span>
+                  <span class="tech">Python · Pandas · NumPy · Plotly · Statsmodels · Scikit-learn</span>
+                </li>
+                <li>
+                  <span class="lang lang-en"><strong>Automation:</strong> script development to automate and optimize internal team workflows and processes.</span>
+                  <span class="lang lang-it"><strong>Automation:</strong> sviluppo di script per l'automazione e l'efficientamento di processi interni al team.</span>
+                  <span class="tech">Python · Streamlit · Pandas</span>
+                </li>
+                <li>
+                  <span class="lang lang-en"><strong>GenAI Technical Support:</strong> sharing technical know-how to maintain and optimize the Knowledge Base for internal agentic systems.</span>
+                  <span class="lang lang-it"><strong>GenAI Technical Support:</strong> supporto tramite condivisione del know-how per il mantenimento e l'efficientamento della Knowledge Base di sistemi agentici interni.</span>
+                  <span class="tech">HTML · CSS · JavaScript · Markdown</span>
+                </li>
+                <li>
+                  <span class="lang lang-en"><strong>Prompt Engineering:</strong> designing prompts, skills, and context frameworks to integrate GenAI into exploratory data research and analysis in EDP systems.</span>
+                  <span class="lang lang-it"><strong>Prompt Engineering:</strong> creazione di prompt, skills e contesti per introdurre la GenAI in processi di ricerca e analisi esplorativa sui dati in EDP.</span>
+                  <span class="tech">Markdown · Python · Databricks</span>
+                </li>
+                <li>
+                  <span class="lang lang-en"><strong>Work Organization &amp; Management:</strong> utilizing enterprise and Microsoft toolstacks to manage concurrent tasks within an Agile/SCRUM framework.</span>
+                  <span class="lang lang-it"><strong>Work Organization &amp; Management:</strong> organizzazione tramite strumenti aziendali e Microsoft per la gestione di task multipli in modalità Agile/SCRUM.</span>
+                  <span class="tech">MS Teams · MS Tasks · MS SharePoint</span>
+                </li>
+              </ul>
+            </div>
+          </article>
+
+          <article class="timeline-item reveal">
+            <div class="timeline-marker" aria-hidden="true"></div>
+            <div class="timeline-card">
+              <p class="timeline-date">
+                <span class="lang lang-en">Mar 2021 – Dec 2021</span>
+                <span class="lang lang-it">Mar 2021 – Dic 2021</span>
+              </p>
+              <h3>
+                <span class="lang lang-en">Full Stack Developer (Internship &amp; Freelance)</span>
+                <span class="lang lang-it">Full Stack Developer (Stage e Collaborazione Occasionale)</span>
+              </h3>
+              <p class="timeline-company">Fragments S.r.l.</p>
+              <p class="lang lang-en">Curricular internship followed by a freelance contract focusing on client product development, with key responsibilities including:</p>
+              <p class="lang lang-it">Attività di stage curriculare e successiva collaborazione occasionale nello sviluppo di prodotto per clienti, con task che includono:</p>
+              <ul class="timeline-list">
+                <li>
+                  <span class="lang lang-en">Development of <strong>Serverless</strong> Web Applications built on AWS and Node.js.</span>
+                  <span class="lang lang-it">Sviluppo di Web App <strong>Serverless</strong> basate su AWS e NodeJS.</span>
+                  <span class="tech">React · Redux · Axios · Lambda Functions · RESTful APIs · MySQL · MongoDB</span>
+                </li>
+                <li>
+                  <span class="lang lang-en">Unit testing and bug fixing on management software products.</span>
+                  <span class="lang lang-it">Unit testing e bugfixing su prodotto software gestionale.</span>
+                  <span class="tech">Jest · JavaScript · TypeScript</span>
+                </li>
+                <li>
+                  <span class="lang lang-en">Agile/SCRUM development utilizing industry-standard tools.</span>
+                  <span class="lang lang-it">Sviluppo Agile/SCRUM attraverso strumenti professionali standard.</span>
+                  <span class="tech">Jira · Slack · GitHub · GitHub Actions</span>
+                </li>
+              </ul>
+            </div>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <div class="separator" aria-hidden="true"></div>
+
+    <!-- ===================== EDUCATION ===================== -->
+    <section class="section" id="education">
+      <div class="section-inner">
+        <h2 class="section-title reveal">
+          <span class="section-index">04</span>
+          <span class="lang lang-en">Education &amp; training</span>
+          <span class="lang lang-it">Istruzione e formazione</span>
+        </h2>
+        <div class="edu-grid">
+          <article class="edu-card reveal">
+            <p class="edu-date">
+              <span class="lang lang-en">Aug 2021 – Oct 2025</span>
+              <span class="lang lang-it">Ago 2021 – Ott 2025</span>
+            </p>
+            <h3>
+              <span class="lang lang-en">M.Sc. in Artificial Intelligence and Data Engineering (LM-32)</span>
+              <span class="lang lang-it">Laurea Magistrale in Artificial Intelligence and Data Engineering (LM-32)</span>
+            </h3>
+            <p class="edu-school">
+              <span class="lang lang-en">University of Pisa · Final Grade: 108/110</span>
+              <span class="lang lang-it">Università degli Studi di Pisa · Valutazione finale: 108/110</span>
+            </p>
+            <p class="edu-detail">
+              <span class="lang lang-en"><em>Thesis:</em> Model Weight Learning as a Novel Paradigm in Computer Vision</span>
+              <span class="lang lang-it"><em>Tesi:</em> Model Weight Learning as a Novel Paradigm in Computer Vision</span>
+            </p>
+            <p class="edu-detail">
+              <span class="lang lang-en">Practical, project-oriented curriculum focused on team deliverables evaluated by academic faculty and industry professionals.</span>
+              <span class="lang lang-it">Percorso pratico orientato allo sviluppo di progetti di team valutati da personale docente e professionisti.</span>
+            </p>
+          </article>
+          <article class="edu-card reveal">
+            <p class="edu-date">
+              <span class="lang lang-en">Sep 2015 – Jul 2021</span>
+              <span class="lang lang-it">Set 2015 – Lug 2021</span>
+            </p>
+            <h3>
+              <span class="lang lang-en">B.Sc. in Computer Engineering (L-8)</span>
+              <span class="lang lang-it">Laurea Triennale in Ingegneria Informatica (L-8)</span>
+            </h3>
+            <p class="edu-school">Politecnico di Torino</p>
+            <p class="edu-detail">
+              <span class="lang lang-en"><strong>Core courses:</strong> Algorithms and Data Structures [C/C++] · Databases [SQL, JS, HTML, CSS] · Object-Oriented Programming [UML, Java] · Operating Systems [C/C++] · Computer Networks (ISO/OSI stack).</span>
+              <span class="lang lang-it"><strong>Esami principali:</strong> Algoritmi e Strutture Dati [C/C++] · Basi di Dati [SQL, JS, HTML, CSS] · Programmazione a Oggetti [UML, Java] · Sistemi Operativi [C/C++] · Reti di Calcolatori (stack ISO/OSI).</span>
+            </p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <div class="separator" aria-hidden="true"></div>
+
+    <!-- ===================== PROJECTS ===================== -->
+    <section class="section" id="projects">
+      <div class="section-inner">
+        <h2 class="section-title reveal">
+          <span class="section-index">05</span>
+          <span class="lang lang-en">Key projects</span>
+          <span class="lang lang-it">Progetti principali</span>
+        </h2>
+        <p class="section-subtitle reveal">
+          <span class="lang lang-en">A selection of academic team projects — full repository on
+            <a href="https://github.com/dgl1797/University-of-Pisa-Projects" target="_blank" rel="noopener">GitHub</a>.</span>
+          <span class="lang lang-it">Una selezione di progetti accademici di team — repository completa su
+            <a href="https://github.com/dgl1797/University-of-Pisa-Projects" target="_blank" rel="noopener">GitHub</a>.</span>
+        </p>
+
+        <h3 class="projects-group reveal">AI Engineering</h3>
+        <div class="projects-grid">
+          <article class="project-card reveal">
+            <h4>Data Mining &amp; Machine Learning</h4>
+            <p class="lang lang-en">Data Mining pipeline integrating multiple sources into a single well-formatted dataset for <em>Frequent Pattern Analysis</em>, extracting antecedent⇒consequent rules with confidence and lift scores powering a live suggestion engine in a Flask+React web app. Engineered an innovative <em>synergy</em> metric (combining confidence and lift) integrated as a feature to optimize ML model training.</p>
+            <p class="lang lang-it">Pipeline di Data Mining per integrare molteplici sorgenti in un unico dataset ben strutturato per la <em>Frequent Pattern Analysis</em>, estraendo regole antecedente⇒conseguente con punteggi di <em>confidence</em> e <em>lift</em> a supporto di un motore di suggerimenti live in un'app web Flask+React. Sviluppata un'innovativa metrica di <em>sinergia</em> (combinando confidence e lift) integrata come feature per ottimizzare l'addestramento di modelli ML.</p>
+            <p class="tech">Jupyter · Scikit-learn · Imblearn · SMOTE · mlxtend · Flask · React</p>
+          </article>
+          <article class="project-card reveal">
+            <h4>Computational Intelligence &amp; Deep Learning</h4>
+            <p class="lang lang-en">Designed, trained, and fine-tuned Deep Learning architectures for generating Super Resolution images from Low Resolution input, including an end-to-end implementation of a Generative Adversarial Network (<a href="https://arxiv.org/pdf/1609.04802.pdf" target="_blank" rel="noopener">SRGAN</a>).</p>
+            <p class="lang lang-it">Progettate, addestrate e ottimizzate (<em>fine-tuned</em>) architetture di Deep Learning per la generazione di immagini a <em>Super Resolution</em> da input a bassa risoluzione, inclusa un'implementazione end-to-end di una rete generativa avversaria (<a href="https://arxiv.org/pdf/1609.04802.pdf" target="_blank" rel="noopener">SRGAN</a>).</p>
+            <p class="tech">PyTorch · TensorFlow · Google Colab</p>
+          </article>
+          <article class="project-card reveal">
+            <h4>Multimedia Information Retrieval</h4>
+            <p class="lang lang-en">High-performance search engine over large-scale document corpora (<a href="https://microsoft.github.io/msmarco/" target="_blank" rel="noopener">MS-MARCO</a>), based on an <em>Inverted Index</em> architecture, BM25/TF-IDF ranking algorithms and pruning strategies.</p>
+            <p class="lang lang-it">Motore di ricerca ad alte prestazioni su corpora documentali su larga scala (<a href="https://microsoft.github.io/msmarco/" target="_blank" rel="noopener">MS-MARCO</a>), basato su un'architettura a indice invertito (<em>Inverted Index</em>), algoritmi di ranking BM25/TF-IDF e strategie di <em>pruning</em>.</p>
+            <p class="tech">Java</p>
+          </article>
+          <article class="project-card reveal">
+            <h4>Business and Project Management</h4>
+            <p class="lang lang-en">End-to-end Retrieval-Augmented Generation (RAG) web application for scraping, parsing, and loading documents into Qdrant vector DB. Semantic Search with sentence-transformers over parsed scientific papers, with OpenAI APIs for automated paper summarization and multi-document research draft generation.</p>
+            <p class="lang lang-it">Applicazione web end-to-end di Retrieval-Augmented Generation (RAG) per scraping, parsing e caricamento di documenti nel vector DB Qdrant. Ricerca semantica con <em>sentence-transformers</em> su articoli scientifici, con API OpenAI per il riassunto automatizzato degli articoli e la generazione di bozze di ricerca multi-documento.</p>
+            <p class="tech">OpenAI API · Svelte + Vite · FastAPI · MongoDB · Qdrant</p>
+          </article>
+          <article class="project-card reveal project-card-wide">
+            <h4>
+              <span class="lang lang-en">Thesis — Model Weight Learning as a Novel Paradigm in Computer Vision</span>
+              <span class="lang lang-it">Tesi — Model Weight Learning as a Novel Paradigm in Computer Vision</span>
+            </h4>
+            <p class="lang lang-en">Researched and implemented an autoencoder for <em>weight-injection</em> into pre-trained models, enabling <em>zero-shot</em> and <em>data-free</em> knowledge integration or removal.</p>
+            <p class="lang lang-it">Ricercato e implementato un autoencoder per l'iniezione dei pesi (<em>weight-injection</em>) in modelli pre-addestrati, abilitando l'integrazione o la rimozione della conoscenza in modalità <em>zero-shot</em> e <em>data-free</em>.</p>
+            <p class="tech">PyTorch · CUDA · Hydra · Weights &amp; Biases · Hugging Face</p>
+          </article>
+        </div>
+
+        <h3 class="projects-group reveal">Software Engineering</h3>
+        <div class="projects-grid">
+          <article class="project-card reveal">
+            <h4>Large Scale and Multi-structured Databases</h4>
+            <p class="lang lang-en">Social network platform centered around musical content, with a real-time user and playlist recommendation engine driven by interaction analysis (likes and shares) using graph databases and caching solutions.</p>
+            <p class="lang lang-it">Piattaforma di social network incentrata su contenuti musicali, con motore di raccomandazione in tempo reale per utenti e playlist guidato dall'analisi delle interazioni (like e condivisioni) tramite database a grafi e soluzioni di caching.</p>
+            <p class="tech">Express.js · TypeScript · React · Redux · Redis · MongoDB · Neo4j</p>
+          </article>
+          <article class="project-card reveal">
+            <h4>Mobile and Social Sensing Systems</h4>
+            <p class="lang lang-en">Mobile application for smartphone sensor telemetry collection integrated with a GCP pipeline. Managed data ingestion, aggregation, and quality index analysis for bicycle paths across the city of Pisa.</p>
+            <p class="lang lang-it">Applicazione mobile per la raccolta della telemetria dei sensori dello smartphone integrata con una pipeline GCP. Gestite ingestione, aggregazione e analisi dell'indice di qualità delle piste ciclabili nella città di Pisa.</p>
+            <p class="tech">Kotlin · Android Studio · Node.js · Google Cloud Run · Firebase</p>
+          </article>
+          <article class="project-card reveal">
+            <h4>Distributed Systems and Middleware Technologies</h4>
+            <p class="lang lang-en">Distributed web architecture integrating Erlang servers for distributed chat management and live notifications interacting with a Java MVP server through web-sockets.</p>
+            <p class="lang lang-it">Architettura web distribuita che integra server Erlang per la gestione delle chat distribuite e delle notifiche live, interagendo con un server Java MVP tramite web-socket.</p>
+            <p class="tech">Erlang · Java · JSP · HTML · CSS · MySQL · Nginx</p>
+          </article>
+          <article class="project-card reveal">
+            <h4>Internet of Things</h4>
+            <p class="lang lang-en">End-to-end industrial monitoring and control system. Simulated sensor nodes using Contiki-NG containers, integrated MQTT/CoAP protocols to communicate with a Java backend and MySQL database, and visualized operational telemetry via Grafana dashboards.</p>
+            <p class="lang lang-it">Sistema di monitoraggio e controllo industriale end-to-end. Simulati nodi sensore con container Contiki-NG, integrati protocolli MQTT/CoAP per comunicare con backend Java e database MySQL, e visualizzata la telemetria operativa tramite dashboard Grafana.</p>
+            <p class="tech">Java · MQTT · CoAP · Grafana · MySQL · Contiki-NG</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <div class="separator" aria-hidden="true"></div>
+
+    <!-- ===================== CONTACT ===================== -->
+    <section class="section" id="contact">
+      <div class="section-inner">
+        <h2 class="section-title reveal">
+          <span class="section-index">06</span>
+          <span class="lang lang-en">Contact</span>
+          <span class="lang lang-it">Contatti</span>
+        </h2>
+        <p class="section-subtitle reveal">
+          <span class="lang lang-en">Open to new opportunities and collaborations — feel free to reach out.</span>
+          <span class="lang lang-it">Aperto a nuove opportunità e collaborazioni — non esitare a contattarmi.</span>
+        </p>
+        <div class="contact-grid">
+          <a class="contact-card reveal" href="mailto:digiacomoluca1797@gmail.com">
+            <svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 6L2 7"/></svg>
+            <span class="contact-label">Email</span>
+            <span class="contact-value">digiacomoluca1797@gmail.com</span>
+          </a>
+          <a class="contact-card reveal" href="tel:+393405133275">
+            <svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+            <span class="contact-label"><span class="lang lang-en">Phone</span><span class="lang lang-it">Telefono</span></span>
+            <span class="contact-value">(+39) 340 513 3275</span>
+          </a>
+          <a class="contact-card reveal" href="https://github.com/dgl1797" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" width="26" height="26" fill="currentColor"><path d="M12 .5C5.65.5.5 5.65.5 12c0 5.08 3.29 9.39 7.86 10.91.58.1.79-.25.79-.55v-2.15c-3.2.69-3.87-1.37-3.87-1.37-.52-1.33-1.28-1.68-1.28-1.68-1.04-.71.08-.7.08-.7 1.15.08 1.76 1.19 1.76 1.19 1.03 1.75 2.69 1.25 3.35.95.1-.74.4-1.25.72-1.54-2.55-.29-5.23-1.28-5.23-5.68 0-1.26.45-2.28 1.19-3.09-.12-.29-.52-1.46.11-3.05 0 0 .97-.31 3.18 1.18a11.06 11.06 0 0 1 5.79 0c2.2-1.49 3.17-1.18 3.17-1.18.63 1.59.24 2.76.12 3.05.74.81 1.18 1.83 1.18 3.09 0 4.41-2.69 5.38-5.25 5.67.41.35.77 1.04.77 2.1v3.11c0 .3.21.66.8.55A11.51 11.51 0 0 0 23.5 12C23.5 5.65 18.35.5 12 .5z"/></svg>
+            <span class="contact-label">GitHub</span>
+            <span class="contact-value">dgl1797</span>
+          </a>
+          <a class="contact-card reveal" href="https://www.linkedin.com/in/luca-di-giacomo-78267a38b" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" width="26" height="26" fill="currentColor"><path d="M20.45 20.45h-3.55v-5.57c0-1.33-.03-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 1 1 0-4.13 2.06 2.06 0 0 1 0 4.13zM7.12 20.45H3.56V9h3.56v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.72v20.55C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.73V1.72C24 .77 23.2 0 22.22 0z"/></svg>
+            <span class="contact-label">LinkedIn</span>
+            <span class="contact-value">Luca Di Giacomo</span>
+          </a>
+        </div>
+        <div class="contact-cta reveal">
+          <button id="download-cv-footer" class="btn btn-primary">
+            <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+            <span class="lang lang-en">Download my CV (PDF)</span>
+            <span class="lang lang-it">Scarica il mio CV (PDF)</span>
+          </button>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="separator" aria-hidden="true"></div>
+    <p>
+      <span class="lang lang-en">© <span id="year"></span> Luca Di Giacomo — Crafted among the stars.</span>
+      <span class="lang lang-it">© <span id="year-it"></span> Luca Di Giacomo — Realizzato tra le stelle.</span>
+    </p>
+  </footer>
+
+  <script src="index.js"></script>
+</body>
+</html>
