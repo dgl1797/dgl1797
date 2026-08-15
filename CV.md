@@ -90,9 +90,6 @@ Practical, project-oriented curriculum focused on team deliverables evaluated by
 *   **Italian:** C2 (Native)
 *   **English:** C1 (Advanced)
 
----
-
-*I authorize the processing of my personal data in accordance with Italian Legislative Decree 196/2003 and Regulation (EU) 2016/679 (GDPR).*
 </details>
 
 <details>
@@ -177,7 +174,4 @@ Percorso pratico orientato allo sviluppo di progetti di team valutati da persona
 *   **Italiano:** C2 (Madrelingua)
 *   **Inglese:** C1 (Livello Avanzato)
 
----
-
-*Autorizzo il trattamento dei miei dati personali ai sensi del d. lgs. 196/2003 e del GDPR 679/16.*
 </details>
