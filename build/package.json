@@ -4,7 +4,7 @@
   "private": true,
   "description": "Personal website of Luca Di Giacomo — static single page app with Puppeteer-generated CV PDFs",
   "scripts": {
-    "generate:pdf": "node scripts/generate-cv-pdf.js"
+    "generate:pdf": "node generate-cv-pdf.js"
   },
   "devDependencies": {
     "puppeteer": "^24.15.0"

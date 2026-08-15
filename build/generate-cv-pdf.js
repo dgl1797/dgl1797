@@ -1,9 +1,9 @@
 /* ============================================================
-   CV PDF generator — renders assets/cv-page.html with Puppeteer
-   and produces one A4 PDF per language in the assets/ folder:
-     - assets/CV_Luca_Di_Giacomo_EN.pdf
-     - assets/CV_Luca_Di_Giacomo_IT.pdf
-   Usage: npm run generate:pdf
+   CV PDF generator — renders site/assets/cv-page.html with Puppeteer
+   and produces one A4 PDF per language in the site/assets/ folder:
+     - site/assets/CV_Luca_Di_Giacomo_EN.pdf
+     - site/assets/CV_Luca_Di_Giacomo_IT.pdf
+   Usage: npm run generate:pdf (from the build/ directory)
    ============================================================ */
 
 "use strict";
@@ -12,8 +12,8 @@ const path = require("path");
 const { pathToFileURL } = require("url");
 const puppeteer = require("puppeteer");
 
-const CV_PAGE = path.resolve(__dirname, "..", "assets", "cv-page.html");
-const OUT_DIR = path.resolve(__dirname, "..", "assets");
+const CV_PAGE = path.resolve(__dirname, "..", "site", "assets", "cv-page.html");
+const OUT_DIR = path.resolve(__dirname, "..", "site", "assets");
 
 const VERSIONS = [
   { lang: "en", hide: "cv-it", file: "CV_Luca_Di_Giacomo_EN.pdf" },

@@ -1,5 +1,5 @@
 # Dependencies
-/node_modules/
+node_modules/
 
-# Generated CV PDFs (built by scripts/generate-cv-pdf.js in CI)
-assets/*.pdf
+# Generated CV PDFs (built by build/generate-cv-pdf.js in CI)
+site/assets/*.pdf

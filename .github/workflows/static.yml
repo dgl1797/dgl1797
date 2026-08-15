@@ -37,15 +37,19 @@ jobs:
           node-version: 20
       - name: Install dependencies
         run: npm ci
+        working-directory: build
       - name: Generate CV PDFs with Puppeteer
         run: npm run generate:pdf
+        working-directory: build
       - name: Setup Pages
         uses: actions/configure-pages@v5
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          # Upload entire repository
-          path: '.'
+          # Deploy only the web content (site/) — includes the generated
+          # CV PDFs in site/assets/ as downloadable content. Repository
+          # sources (CV.md, build files, etc.) are NOT published.
+          path: 'site'
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v5
