@@ -45,9 +45,7 @@ const VERSIONS = [
         path: outPath,
         format: "A4",
         printBackground: true,
-        // Vertical margins apply to EVERY page (the .cv element padding
-        // only pads the very start/end of the document flow).
-        margin: { top: "11mm", right: "0", bottom: "11mm", left: "0" },
+        preferCSSPageSize: true,
       });
 
       await page.close();
