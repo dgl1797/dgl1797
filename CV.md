@@ -66,10 +66,10 @@ Practical, project-oriented curriculum focused on team deliverables evaluated by
 *Politecnico di Torino | Sep 2015 – Jul 2021*
 
 **Core Courses:** 
-* **Algorithms and Data Structures:** Core algorithms, optimization techniques, and computational complexity analysis with practical implementation using pointers and classes. [C/C++]
-* **Databases:** Relational algebra and SQL RDBMSs, including a practical web development project. [SQL, JS, HTML, CSS]
-* **Object-Oriented Programming:** Foundations of Software Engineering, Software Development Life Cycle, and Object-Oriented Programming. [UML, Java, Functional/Non-Functional Requirements, Use Case diagrams]
-* **Operating Systems:** Fundamentals of operating systems and multi-threaded programming. [C/C++]
+* **Algorithms and Data Structures:** Core algorithms, optimization techniques, and computational complexity analysis with practical implementation using pointers and classes. *[C/C++]*
+* **Databases:** Relational algebra and SQL RDBMSs, including a practical web development project. *[SQL, JS, HTML, CSS]*
+* **Object-Oriented Programming:** Foundations of Software Engineering, Software Development Life Cycle, and Object-Oriented Programming. *[UML, Java, Functional/Non-Functional Requirements, Use Case diagrams]*
+* **Operating Systems:** Fundamentals of operating systems and multi-threaded programming. *[C/C++]*
 * **Computer Networks:** Primary communication protocols across the ISO/OSI model stack.
 
 ---
@@ -78,8 +78,8 @@ Practical, project-oriented curriculum focused on team deliverables evaluated by
 
 | Area | Skills |
 | :--- | :--- |
-| **Software Engineering** | SQL, Node.js, Spring Boot, FastAPI, Flask, Java, JavaScript/TypeScript, Git, Docker, React.js, Angular, Python, C/C++, MySQL, MongoDB, Redis, Neo4j, Qdrant. |
-| **Artificial Intelligence** | Machine Learning, Deep Learning, Pandas, NumPy, Scikit-learn, OpenCV, LLM, Computer Vision, NLP, RAG, Coding Agents (Skills, Tools, MCP, Prompt Engineering), Agent Development Frameworks (LangGraph) |
+| **Software Engineering** | SQL, Node, Spring Boot, FastAPI, Flask, Flet, Java, JavaScript/TypeScript, Git, Docker, React, Angular, Python, C/C++, MySQL, MongoDB, Redis, Neo4j, Qdrant. |
+| **Artificial Intelligence** | Machine Learning, Deep Learning (PyTorch, Tensorflow, WandB, Optuna, Hydra, CUDA), Pandas, NumPy, Scikit-learn, OpenCV, LLM, Computer Vision, NLP, RAG, Coding Agents (Skills, Tools, MCP, Prompt Engineering), Agent Development Frameworks (LangGraph) |
 
 ### Soft Skills
 * Teamwork, Executive Communication, Adaptability, Critical Thinking, Cross-functional Collaboration, Problem Solving, Creativity.
@@ -150,10 +150,10 @@ Percorso pratico orientato allo sviluppo di progetti di team valutati da persona
 *Politecnico di Torino | 07/03/2021 – 28/12/2021*
 
 **Esami principali:** 
-  * **Algoritmi e Strutture Dati:** Principali algoritmi e metodi di ottimizzazione e calcolo della complessità computazionale con implementazione pratica attraverso puntatori e classi. [C/C++]
-  * **Basi di Dati:** Algebra relazionale e RDBMs SQL con progetto pratico di sito web. [SQL, JS, HTML, CSS]
+  * **Algoritmi e Strutture Dati:** Principali algoritmi e metodi di ottimizzazione e calcolo della complessità computazionale con implementazione pratica attraverso puntatori e classi. *[C/C++]*
+  * **Basi di Dati:** Algebra relazionale e RDBMs SQL con progetto pratico di sito web. *[SQL, JS, HTML, CSS]*
   * **Programmazione a Oggetti:** Basi di Software Engineering, Ciclo di vita del Software, Programmazione ad Oggetti. [UML, Java, Functional/Non-Functional Requirements, Use Case diagrams]
-  * **Sistemi Operativi:** Basi di sistemi operativi e multi-thread programming. [C/C++]
+  * **Sistemi Operativi:** Basi di sistemi operativi e multi-thread programming. *[C/C++]*
   * **Reti di Calcolatori:** Principali protocolli di comunicazione dello stack del modello ISO/OSI.
 
 ---
@@ -162,8 +162,8 @@ Percorso pratico orientato allo sviluppo di progetti di team valutati da persona
 
 | Area | Competenze |
 | :--- | :--- |
-| **Software Engineering** | SQL, Node.js, Springboot, Fastapi, Flask, Java, Javascript/Typescript, Git, Docker, React.js, Angular, Python, C/C++, MySQL, MongoDB, Redis, Neo4j, Qdrant. |
-| **Artificial Intelligence** | Machine Learning, Deep Learning, Pandas, Numpy, Scikit-learn, OpenCV, LLM, Computer Vision, NLP, RAG, Coding Agents (Skills, Tools, MCP, Prompt Engineering), Agent Development Frameworks (LangGraph) |
+| **Software Engineering** | SQL, Node, Springboot, Fastapi, Flask, Flet, Java, Javascript/Typescript, Git, Docker, React, Angular, Python, C/C++, MySQL, MongoDB, Redis, Neo4j, Qdrant. |
+| **Artificial Intelligence** | Machine Learning, Deep Learning (PyTorch, Tensorflow, WandB, Optuna, Hydra, CUDA), Pandas, Numpy, Scikit-learn, OpenCV, LLM, Computer Vision, NLP, RAG, Coding Agents (Skills, Tools, MCP, Prompt Engineering), Agent Development Frameworks (LangGraph) |
 
 ### Competenze Trasversali (Soft Skills)
 * Teamwork, Comunicazione dei risultati, Flessibilità, Pensiero critico, Collaborazione cross-funzionale, Problem Solving, Creatività.
