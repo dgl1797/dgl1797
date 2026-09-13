@@ -581,13 +581,15 @@ html[data-lang="it"] p.lang-it { display: block; }
 /* ---------- Timeline (Experience) ---------- */
 .timeline {
   position: relative;
-  padding-left: 2rem;
+  --date-w: 192px;
+  --marker-w: 15px;
+  --col-gap: 1.4rem;
 }
 
 .timeline::before {
   content: "";
   position: absolute;
-  left: 7px;
+  left: calc(var(--date-w) + var(--col-gap) + var(--marker-w) / 2);
   top: 8px;
   bottom: 8px;
   width: 1px;
@@ -603,8 +605,8 @@ html[data-lang="it"] p.lang-it { display: block; }
 
 .timeline-marker {
   position: absolute;
-  left: -2rem;
-  top: 10px;
+  left: calc(var(--date-w) + var(--col-gap));
+  top: calc(1.7rem + 4px);
   width: 15px;
   height: 15px;
   border-radius: 50%;
@@ -614,6 +616,7 @@ html[data-lang="it"] p.lang-it { display: block; }
 }
 
 .timeline-card {
+  margin-left: calc(var(--date-w) + var(--col-gap) + var(--marker-w) + var(--col-gap));
   background: var(--bg-card);
   border: 1px solid var(--border-soft);
   border-radius: var(--radius);
@@ -629,11 +632,16 @@ html[data-lang="it"] p.lang-it { display: block; }
 }
 
 .timeline-date {
+  width: var(--date-w);
+  margin-left: calc(-1 * (var(--date-w) + var(--col-gap) + var(--marker-w) + var(--col-gap) + 1.9rem));
+  margin-bottom: 0.4rem;
+  text-align: right;
+  white-space: nowrap;
   font-size: 0.82rem;
+  line-height: 1.5;
   letter-spacing: 0.14em;
   text-transform: uppercase;
   color: var(--accent);
-  margin-bottom: 0.4rem;
   font-weight: 500;
 }
 
@@ -954,8 +962,29 @@ html[data-lang="it"] p.lang-it { display: block; }
   .nav-burger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
 
   .timeline { padding-left: 1.6rem; }
-  .timeline-marker { left: -1.6rem; }
+
+  .timeline::before { left: 7px; }
+
+  .timeline-marker { left: -1.6rem; top: 10px; }
+
+  .timeline-card { margin-left: 0; }
+
+  .timeline-date {
+    width: auto;
+    margin-left: 0;
+    text-align: left;
+    white-space: normal;
+  }
 
   .fact-list li { flex-direction: column; gap: 0.1rem; }
   .fact-value { text-align: left; }
+}
+
+/* ---------- Timeline nudge (wide screens) ----------
+   Shift the timeline left by half the date/dot gutter so the
+   experience card ends up centered on the viewport. */
+@media (min-width: 1400px) {
+  .timeline {
+    transform: translateX(calc(-0.5 * (var(--date-w) + var(--col-gap) + var(--marker-w) + var(--col-gap))));
+  }
 }
