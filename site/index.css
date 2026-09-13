@@ -658,6 +658,15 @@ html[data-lang="it"] p.lang-it { display: block; }
   margin-bottom: 0.9rem;
 }
 
+.timeline-card > .timeline-list + p.lang {
+  margin-top: 1.3rem;
+}
+
+.timeline-card > p.lang strong {
+  color: var(--moon-bright);
+  font-weight: 600;
+}
+
 .timeline-list {
   list-style: none;
   display: flex;
