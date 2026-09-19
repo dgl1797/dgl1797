@@ -309,6 +309,180 @@
   })();
 
   /* ----------------------------------------------------------
+     Section stepping — the mouse wheel scrolls natively, while
+     the arrow keys jump straight to the next/previous section.
+     ---------------------------------------------------------- */
+  (function sectionStepping() {
+    if (prefersReducedMotion) return;
+
+    const NAV = 90;
+    const LOCK_MS = 750;
+
+    const sections = Array.from(document.querySelectorAll(".hero, .section"));
+    if (!sections.length) return;
+
+    let lockUntil = 0;
+
+    function maxScroll() {
+      return document.documentElement.scrollHeight - window.innerHeight;
+    }
+
+    function sectionTops() {
+      return sections.map((s) => s.getBoundingClientRect().top + window.scrollY);
+    }
+
+    function currentIndex(y, tops) {
+      let idx = 0;
+      for (let i = 0; i < tops.length; i++) {
+        if (tops[i] <= y + NAV + 2) idx = i;
+      }
+      return idx;
+    }
+
+    function step(dir) {
+      const now = performance.now();
+      if (now < lockUntil) return;
+      lockUntil = now + LOCK_MS;
+
+      const y = window.scrollY;
+      const tops = sectionTops();
+      const idx = currentIndex(y, tops);
+      let target;
+
+      if (dir > 0) {
+        target = idx < tops.length - 1 ? tops[idx + 1] - NAV : maxScroll();
+      } else {
+        target = idx > 0 ? tops[idx - 1] - NAV : 0;
+      }
+
+      window.scrollTo({
+        top: Math.max(0, Math.min(target, maxScroll())),
+        behavior: "smooth",
+      });
+    }
+
+    window.addEventListener("keydown", (e) => {
+      if (e.ctrlKey || e.metaKey || e.altKey || e.shiftKey) return;
+      const el = e.target;
+      if (el && (el.tagName === "INPUT" || el.tagName === "TEXTAREA" || el.isContentEditable)) return;
+      if (e.key === "ArrowDown") {
+        e.preventDefault();
+        step(1);
+      } else if (e.key === "ArrowUp") {
+        e.preventDefault();
+        step(-1);
+      }
+    });
+  })();
+
+  /* ----------------------------------------------------------
+     Timeline progress — a scroll-driven snake. A glowing head
+     rides the timeline with the viewport, trailing a lit bar,
+     and each experience marker stays lit once scrolled past.
+     ---------------------------------------------------------- */
+  (function timelineProgress() {
+    const timeline = document.querySelector(".timeline");
+    if (!timeline) return;
+
+    const items = Array.from(timeline.querySelectorAll(".timeline-item"));
+    const headEl = timeline.querySelector(".timeline-head");
+    let rafId = null;
+
+    function railX() {
+      const marker = timeline.querySelector(".timeline-marker");
+      if (!marker) return timeline.offsetWidth / 2;
+      const tr = timeline.getBoundingClientRect();
+      const mr = marker.getBoundingClientRect();
+      return mr.left + mr.width / 2 - tr.left;
+    }
+
+    function update() {
+      rafId = null;
+      const rect = timeline.getBoundingClientRect();
+      const vh = window.innerHeight;
+      const lineTop = 8;
+      const lineLen = rect.height - 16;
+      const headY = vh * 0.55 - rect.top;
+
+      const progress = Math.max(0, Math.min(1, (headY - lineTop) / lineLen));
+      timeline.style.setProperty("--progress", progress.toFixed(4));
+      timeline.style.setProperty("--rail-x", railX() + "px");
+
+      if (headEl) {
+        const visible = headY >= lineTop && headY <= lineTop + lineLen;
+        headEl.classList.toggle("on", visible);
+        headEl.style.setProperty("--head-top", headY + "px");
+      }
+
+      items.forEach((item) => {
+        const marker = item.querySelector(".timeline-marker");
+        if (!marker) return;
+        const m = marker.getBoundingClientRect();
+        const markerY = m.top + m.height / 2;
+        item.classList.toggle("read", markerY <= headY);
+        item.classList.toggle("active", Math.abs(markerY - headY) <= vh * 0.18);
+      });
+    }
+
+    function onScroll() {
+      if (rafId === null) rafId = requestAnimationFrame(update);
+    }
+
+    window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("resize", onScroll);
+    update();
+  })();
+
+  /* ----------------------------------------------------------
+     Nav scroll-spy — the link for the section currently in view
+     gets a persistent glowing underline.
+     ---------------------------------------------------------- */
+  (function navSpy() {
+    const links = Array.from(document.querySelectorAll(".nav-links a[href^='#']"));
+    if (!links.length) return;
+
+    const NAV = 90;
+    const targets = links
+      .map((link) => {
+        const id = link.getAttribute("href").slice(1);
+        const section = document.getElementById(id);
+        if (!section) return null;
+        let prev = section.previousElementSibling;
+        while (prev && !prev.classList.contains("separator")) {
+          prev = prev.previousElementSibling;
+        }
+        return { link, section, trigger: prev || section };
+      })
+      .filter(Boolean);
+    if (!targets.length) return;
+
+    let rafId = null;
+
+    function update() {
+      rafId = null;
+      const line = window.scrollY + NAV + 2;
+      const atBottom = window.scrollY + window.innerHeight >= document.documentElement.scrollHeight - 2;
+
+      let active = null;
+      for (const t of targets) {
+        const top = t.trigger.getBoundingClientRect().top + window.scrollY;
+        if (top <= line) active = t;
+      }
+      if (atBottom) active = targets[targets.length - 1];
+
+      targets.forEach((t) => t.link.classList.toggle("active", t === active));
+    }
+
+    function onScroll() {
+      if (rafId === null) rafId = requestAnimationFrame(update);
+    }
+
+    window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("resize", onScroll);
+    update();
+  })();
+
+  /* ----------------------------------------------------------
      Footer year
      ---------------------------------------------------------- */
   const year = String(new Date().getFullYear());

@@ -215,6 +215,16 @@ html[data-lang="it"] p.lang-it { display: block; }
 .nav-links a:hover { color: var(--moon-bright); }
 .nav-links a:hover::after { transform: scaleX(1); }
 
+.nav-links a.active {
+  color: var(--moon-bright);
+  text-shadow: 0 0 14px var(--moon-glow-soft);
+}
+
+.nav-links a.active::after {
+  transform: scaleX(1);
+  box-shadow: 0 0 8px var(--moon-glow);
+}
+
 .nav-actions {
   display: flex;
   align-items: center;
@@ -688,6 +698,7 @@ html[data-lang="it"] .hero-role .lang-it {
   --date-w: 192px;
   --marker-w: 15px;
   --col-gap: 1.4rem;
+  --progress: 0;
 }
 
 .timeline::before {
@@ -698,6 +709,92 @@ html[data-lang="it"] .hero-role .lang-it {
   bottom: 8px;
   width: 1px;
   background: linear-gradient(180deg, var(--moon-glow), var(--border-soft) 60%, transparent);
+}
+
+/* Scroll-driven progress: a glowing head riding a snake-like tail bar */
+.timeline-tail {
+  position: absolute;
+  left: var(--rail-x, 0px);
+  top: 8px;
+  width: 3px;
+  height: calc((100% - 16px) * var(--progress, 0));
+  margin-left: -1.5px;
+  border-radius: 3px;
+  background: linear-gradient(180deg, transparent, var(--moon-glow) 30%, var(--moon) 75%, var(--moon-bright));
+  filter: drop-shadow(0 0 5px var(--moon-glow));
+  pointer-events: none;
+}
+
+.timeline-head {
+  position: absolute;
+  left: var(--rail-x, 0px);
+  top: var(--head-top, 8px);
+  width: 9px;
+  height: 9px;
+  margin-left: -4.5px;
+  margin-top: -4.5px;
+  border-radius: 50%;
+  background: var(--moon-bright);
+  box-shadow: 0 0 10px 2px var(--moon-glow), 0 0 24px 6px var(--moon-glow-soft);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+
+.timeline-head.on {
+  opacity: 1;
+  animation: head-glow 9s ease-in-out infinite;
+}
+
+/* Sparkles shooting out of the head in a periodic burst */
+.timeline-head::before {
+  content: "";
+  position: absolute;
+  inset: -20px;
+  border-radius: 50%;
+  pointer-events: none;
+  opacity: 0;
+  background-repeat: no-repeat;
+  background-size: 6px 6px;
+  background-image:
+    radial-gradient(circle, #ffffff 0 1px, rgba(232, 237, 245, 0.55) 1.5px, transparent 3px),
+    radial-gradient(circle, #ffffff 0 1px, rgba(232, 237, 245, 0.55) 1.5px, transparent 3px),
+    radial-gradient(circle, #e8edf5 0 1px, rgba(205, 213, 224, 0.45) 1.4px, transparent 2.8px),
+    radial-gradient(circle, #ffffff 0 1px, rgba(232, 237, 245, 0.5) 1.5px, transparent 3px),
+    radial-gradient(circle, #e8edf5 0 1px, rgba(205, 213, 224, 0.45) 1.4px, transparent 2.8px),
+    radial-gradient(circle, #e8edf5 0 1px, rgba(205, 213, 224, 0.4) 1.4px, transparent 2.8px);
+  animation: head-sparkle 9s ease-out infinite;
+}
+
+@keyframes head-glow {
+  0%, 74%, 100% {
+    box-shadow: 0 0 10px 2px var(--moon-glow), 0 0 24px 6px var(--moon-glow-soft);
+  }
+  82% {
+    box-shadow: 0 0 18px 6px var(--moon-glow), 0 0 44px 16px var(--moon-glow-soft);
+  }
+  90% {
+    box-shadow: 0 0 10px 2px var(--moon-glow), 0 0 24px 6px var(--moon-glow-soft);
+  }
+}
+
+@keyframes head-sparkle {
+  0%, 76% {
+    opacity: 0;
+    background-position: 50% 50%, 50% 50%, 50% 50%, 50% 50%, 50% 50%, 50% 50%;
+  }
+  80% {
+    opacity: 1;
+    background-position: 50% 42%, 59% 43%, 61% 50%, 59% 57%, 50% 58%, 41% 50%;
+  }
+  95% {
+    opacity: 0;
+    background-position: 50% 2%, 90% 10%, 100% 50%, 90% 90%, 50% 98%, 10% 50%;
+  }
+  100% {
+    opacity: 0;
+    background-position: 50% 2%, 90% 10%, 100% 50%, 90% 90%, 50% 98%, 10% 50%;
+  }
 }
 
 .timeline-item {
@@ -717,6 +814,20 @@ html[data-lang="it"] .hero-role .lang-it {
   background: var(--bg-deep);
   border: 2px solid var(--moon);
   box-shadow: 0 0 12px var(--moon-glow);
+  transition: background 0.4s ease, border-color 0.4s ease, box-shadow 0.4s ease, transform 0.4s ease;
+}
+
+/* Markers already passed during scrolling stay lit ("read") */
+.timeline-item.read .timeline-marker {
+  background: var(--moon-bright);
+  border-color: var(--moon-bright);
+  box-shadow: 0 0 16px var(--moon-glow), 0 0 32px var(--moon-glow-soft);
+}
+
+.timeline-item.active .timeline-marker {
+  transform: scale(1.25);
+  border-color: var(--moon-bright);
+  box-shadow: 0 0 20px var(--moon-glow), 0 0 40px var(--moon-glow-soft);
 }
 
 .timeline-card {
@@ -1051,6 +1162,9 @@ html[data-lang="it"] .footer p > .lang-it {
   html[data-lang="en"] .footer p > .lang-en,
   html[data-lang="it"] .footer p > .lang-it,
   .btn::after { animation: none; }
+  .timeline-marker { transition: none; }
+  .timeline-head.on,
+  .timeline-head::before { animation: none; }
   .reveal {
     opacity: 1;
     transform: none;
