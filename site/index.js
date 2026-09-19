@@ -168,6 +168,147 @@
   })();
 
   /* ----------------------------------------------------------
+     Comet trail — a glowing head with fading particles trailing
+     the cursor. Disabled for reduced motion and touch pointers.
+     ---------------------------------------------------------- */
+  (function cometTrail() {
+    const precisePointer = window.matchMedia("(pointer: fine)").matches;
+    if (prefersReducedMotion || !precisePointer) return;
+
+    const canvas = document.getElementById("cursor-trail");
+    if (!canvas) return;
+    const ctx = canvas.getContext("2d");
+
+    const MAX_PARTICLES = 180;
+    const particles = [];
+
+    let w = 0;
+    let h = 0;
+    let rafId = null;
+    let lastT = 0;
+    let curX = null;
+    let curY = null;
+    let prevX = null;
+    let prevY = null;
+
+    function resize() {
+      const dpr = Math.min(window.devicePixelRatio || 1, 2);
+      w = window.innerWidth;
+      h = window.innerHeight;
+      canvas.width = w * dpr;
+      canvas.height = h * dpr;
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    }
+
+    function spawn(x, y) {
+      if (particles.length >= MAX_PARTICLES) return;
+      const angle = Math.random() * Math.PI * 2;
+      const speed = Math.random() * 0.28;
+      particles.push({
+        x: x,
+        y: y,
+        vx: Math.cos(angle) * speed,
+        vy: Math.sin(angle) * speed - 0.05,
+        r: Math.random() * 1.5 + 0.9,
+        life: 0,
+        max: Math.random() * 0.55 + 0.45,
+      });
+    }
+
+    function draw(t) {
+      const now = t / 1000;
+      const dt = Math.min(now - lastT, 0.05) || 0;
+      lastT = now;
+
+      ctx.clearRect(0, 0, w, h);
+
+      if (curX !== null && prevX !== null) {
+        const dx = curX - prevX;
+        const dy = curY - prevY;
+        const dist = Math.hypot(dx, dy);
+        const steps = Math.min(Math.floor(dist / 5), 8);
+        for (let i = 1; i <= steps; i++) {
+          const k = i / steps;
+          spawn(prevX + dx * k, prevY + dy * k);
+        }
+      }
+      prevX = curX;
+      prevY = curY;
+
+      for (let i = particles.length - 1; i >= 0; i--) {
+        const p = particles[i];
+        p.life += dt;
+        if (p.life >= p.max) {
+          particles.splice(i, 1);
+          continue;
+        }
+        p.x += p.vx;
+        p.y += p.vy;
+
+        const k = 1 - p.life / p.max;
+        const radius = p.r * (0.4 + 0.6 * k);
+
+        ctx.globalAlpha = 0.2 * k;
+        ctx.fillStyle = "#8fa3ff";
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, radius * 3.2, 0, Math.PI * 2);
+        ctx.fill();
+
+        ctx.globalAlpha = 0.85 * k;
+        ctx.fillStyle = "#e8edf5";
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, radius, 0, Math.PI * 2);
+        ctx.fill();
+      }
+      ctx.globalAlpha = 1;
+
+      rafId = requestAnimationFrame(draw);
+    }
+
+    window.addEventListener("pointermove", (e) => {
+      curX = e.clientX;
+      curY = e.clientY;
+    });
+
+    window.addEventListener("pointerout", (e) => {
+      if (!e.relatedTarget) {
+        curX = null;
+        curY = null;
+        prevX = null;
+        prevY = null;
+      }
+    });
+
+    window.addEventListener("resize", resize);
+
+    document.addEventListener("visibilitychange", () => {
+      if (document.hidden) {
+        if (rafId) cancelAnimationFrame(rafId);
+        rafId = null;
+      } else if (!rafId) {
+        lastT = 0;
+        rafId = requestAnimationFrame(draw);
+      }
+    });
+
+    resize();
+    rafId = requestAnimationFrame(draw);
+  })();
+
+  /* ----------------------------------------------------------
+     Cosmic dust on CTA borders — randomise each button's cycle
+     (9–12s) and delay so they never pulse in lockstep.
+     ---------------------------------------------------------- */
+  (function cosmicDust() {
+    if (prefersReducedMotion) return;
+    document.querySelectorAll(".btn").forEach((btn) => {
+      const duration = 9 + Math.random() * 3;
+      btn.style.setProperty("--dust-duration", duration.toFixed(2) + "s");
+      btn.style.setProperty("--dust-delay", (-Math.random() * duration).toFixed(2) + "s");
+    });
+  })();
+
+  /* ----------------------------------------------------------
      Footer year
      ---------------------------------------------------------- */
   const year = String(new Date().getFullYear());

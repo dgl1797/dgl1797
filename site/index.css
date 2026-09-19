@@ -34,6 +34,13 @@
   --max-width: 1120px;
 }
 
+/* Animatable angle powering the cosmic-dust border */
+@property --dust-angle {
+  syntax: "<angle>";
+  inherits: false;
+  initial-value: 0deg;
+}
+
 * { margin: 0; padding: 0; box-sizing: border-box; }
 
 html {
@@ -89,6 +96,16 @@ html[data-lang="it"] p.lang-it { display: block; }
 @keyframes nebula-drift {
   from { transform: translate3d(0, 0, 0) scale(1); }
   to   { transform: translate3d(-2%, 1.5%, 0) scale(1.06); }
+}
+
+/* Comet trail follows the cursor, painted above every layer */
+#cursor-trail {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 9999;
+  pointer-events: none;
 }
 
 /* ---------- Glowing moon-grey separators ---------- */
@@ -270,19 +287,31 @@ html[data-lang="it"] p.lang-it { display: block; }
 }
 
 .hero-name {
+  display: inline-block;
   font-family: var(--font-display);
   font-size: clamp(2.6rem, 7vw, 4.6rem);
   font-weight: 700;
   line-height: 1.1;
-  color: var(--moon-bright);
   margin-bottom: 1rem;
-}
-
-.glow-text {
-  background: linear-gradient(120deg, var(--moon-bright), var(--moon) 45%, var(--accent));
+  background-image: linear-gradient(
+    110deg,
+    var(--moon) 0%,
+    var(--moon) 42%,
+    var(--accent) 49%,
+    #fbf7ff 50%,
+    var(--accent) 51%,
+    var(--moon) 58%,
+    var(--moon) 100%
+  );
+  background-size: 250% 100%;
+  background-position: 0% 50%;
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
+  animation: title-sweep 6s linear infinite;
+}
+
+.glow-text {
   text-shadow: 0 0 42px var(--moon-glow-soft);
 }
 
@@ -293,6 +322,34 @@ html[data-lang="it"] p.lang-it { display: block; }
   color: var(--text-muted);
   margin: 0 auto 1.4rem;
   max-width: 46rem;
+}
+
+html[data-lang="en"] .hero-role .lang-en,
+html[data-lang="it"] .hero-role .lang-it {
+  display: inline-block;
+  background-image: linear-gradient(
+    110deg,
+    var(--text-muted) 0%,
+    var(--text-muted) 42%,
+    var(--accent) 48%,
+    #fbf7ff 50%,
+    var(--accent) 52%,
+    var(--text-muted) 58%,
+    var(--text-muted) 100%
+  );
+  background-size: 250% 100%;
+  background-position: 0% 50%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+  animation: title-sweep 6s linear infinite;
+  animation-delay: 0.35s;
+}
+
+@keyframes title-sweep {
+  from { background-position: 100% 50%; }
+  to   { background-position: 0% 50%; }
 }
 
 .hero-tagline {
@@ -311,6 +368,7 @@ html[data-lang="it"] p.lang-it { display: block; }
 }
 
 .btn {
+  position: relative;
   display: inline-flex;
   align-items: center;
   gap: 0.55rem;
@@ -325,10 +383,55 @@ html[data-lang="it"] p.lang-it { display: block; }
   transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease, color 0.3s ease;
 }
 
+/* Cosmic dust: a ring of fine grains orbiting the border, then resting */
+.btn::after {
+  content: "";
+  position: absolute;
+  inset: -1px;
+  border-radius: inherit;
+  padding: 1.5px;
+  background: conic-gradient(
+    from var(--dust-angle),
+    transparent 0deg,
+    transparent 40deg,
+    rgba(232, 237, 245, 0.15) 60deg,
+    rgba(232, 237, 245, 0.95) 74deg,
+    rgba(143, 163, 255, 0.55) 86deg,
+    rgba(143, 163, 255, 0.12) 98deg,
+    transparent 130deg,
+    transparent 190deg,
+    rgba(232, 237, 245, 0.12) 210deg,
+    rgba(232, 237, 245, 0.7) 222deg,
+    rgba(143, 163, 255, 0.4) 232deg,
+    transparent 250deg,
+    transparent 310deg,
+    rgba(205, 213, 224, 0.1) 326deg,
+    rgba(232, 237, 245, 0.55) 336deg,
+    transparent 352deg,
+    transparent 360deg
+  );
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  opacity: 0;
+  pointer-events: none;
+  animation: dust-orbit var(--dust-duration, 10s) linear infinite;
+  animation-delay: var(--dust-delay, 0s);
+}
+
+@keyframes dust-orbit {
+  0%   { --dust-angle: 0deg; opacity: 0; }
+  6%   { opacity: 1; }
+  62%  { --dust-angle: 360deg; opacity: 1; }
+  70%  { --dust-angle: 360deg; opacity: 0; }
+  100% { --dust-angle: 360deg; opacity: 0; }
+}
+
 .btn-primary {
-  background: var(--moon);
-  color: var(--bg-deep);
-  border: 1px solid var(--moon);
+  background: transparent;
+  color: var(--moon-bright);
+  border: 1px solid var(--moon-bright);
   box-shadow: 0 0 22px var(--moon-glow-soft);
 }
 
@@ -336,6 +439,7 @@ html[data-lang="it"] p.lang-it { display: block; }
   transform: translateY(-2px);
   box-shadow: 0 0 34px var(--moon-glow);
   background: var(--moon-bright);
+  color: var(--bg-deep);
 }
 
 .btn-ghost {
@@ -900,6 +1004,29 @@ html[data-lang="it"] p.lang-it { display: block; }
 
 .footer .separator { margin-bottom: 2rem; }
 
+html[data-lang="en"] .footer p > .lang-en,
+html[data-lang="it"] .footer p > .lang-it {
+  display: inline-block;
+  background-image: linear-gradient(
+    110deg,
+    var(--text-muted) 0%,
+    var(--text-muted) 42%,
+    var(--accent) 48%,
+    #fbf7ff 50%,
+    var(--accent) 52%,
+    var(--text-muted) 58%,
+    var(--text-muted) 100%
+  );
+  background-size: 250% 100%;
+  background-position: 0% 50%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+  animation: title-sweep 6s linear infinite;
+  animation-delay: 0.35s;
+}
+
 /* ---------- Reveal animations ---------- */
 .reveal {
   opacity: 0;
@@ -917,7 +1044,13 @@ html[data-lang="it"] p.lang-it { display: block; }
 /* ---------- Reduced motion ---------- */
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
-  .nebula, .scroll-orb, .separator::after { animation: none; }
+  .nebula, .scroll-orb, .separator::after,
+  .hero-name,
+  html[data-lang="en"] .hero-role .lang-en,
+  html[data-lang="it"] .hero-role .lang-it,
+  html[data-lang="en"] .footer p > .lang-en,
+  html[data-lang="it"] .footer p > .lang-it,
+  .btn::after { animation: none; }
   .reveal {
     opacity: 1;
     transform: none;
