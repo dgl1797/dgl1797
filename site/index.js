@@ -1,6 +1,6 @@
 /* ============================================================
    Luca Di Giacomo — Personal website scripts
-   Language switching · starfield · scroll reveals · PDF export
+   Language switching · starfield · scroll reveals · contact modal
    ============================================================ */
 
 (function () {
@@ -301,7 +301,7 @@
      ---------------------------------------------------------- */
   (function cosmicDust() {
     if (prefersReducedMotion) return;
-    document.querySelectorAll(".btn").forEach((btn) => {
+    document.querySelectorAll(".btn, .hero-card-glow").forEach((btn) => {
       const duration = 9 + Math.random() * 3;
       btn.style.setProperty("--dust-duration", duration.toFixed(2) + "s");
       btn.style.setProperty("--dust-delay", (-Math.random() * duration).toFixed(2) + "s");
@@ -483,40 +483,96 @@
   })();
 
   /* ----------------------------------------------------------
-     Footer year
+     Contact modal — opens the Formspree form; closes on the ×
+     button, a backdrop click, or Escape (handled natively).
      ---------------------------------------------------------- */
-  const year = String(new Date().getFullYear());
-  const yearEn = document.getElementById("year");
-  const yearIt = document.getElementById("year-it");
-  if (yearEn) yearEn.textContent = year;
-  if (yearIt) yearIt.textContent = year;
+  const contactModal = document.getElementById("contact-modal");
 
-  /* ----------------------------------------------------------
-     CV PDF download
-     The PDFs are pre-generated from assets/cv-page.html with
-     Puppeteer (see scripts/generate-cv-pdf.js, run locally via
-     `npm run generate:pdf` and automatically in the GitHub
-     Pages deploy workflow). Here we simply download the file
-     matching the currently selected language.
-     ---------------------------------------------------------- */
-  const CV_FILES = {
-    en: "assets/CV_Luca_Di_Giacomo_EN.pdf",
-    it: "assets/CV_Luca_Di_Giacomo_IT.pdf",
-  };
+  function closeContactModal() {
+    if (!contactModal || !contactModal.open || contactModal.classList.contains("closing")) return;
+    if (prefersReducedMotion) {
+      contactModal.close();
+      return;
+    }
 
-  function downloadCv() {
-    const lang = document.documentElement.getAttribute("data-lang") || "en";
-    const href = CV_FILES[lang] || CV_FILES.en;
-
-    const link = document.createElement("a");
-    link.href = href;
-    link.download = href.split("/").pop();
-    document.body.appendChild(link);
-    link.click();
-    link.remove();
+    contactModal.classList.add("closing");
+    let finished = false;
+    const finish = () => {
+      if (finished) return;
+      finished = true;
+      contactModal.removeEventListener("animationend", onEnd);
+      contactModal.classList.remove("closing");
+      contactModal.close();
+    };
+    const onEnd = (e) => {
+      if (e.target === contactModal) finish();
+    };
+    contactModal.addEventListener("animationend", onEnd);
+    setTimeout(finish, 400);
   }
 
-  document.querySelectorAll("#download-cv, #download-cv-footer").forEach((btn) => {
-    btn.addEventListener("click", downloadCv);
+  document.querySelectorAll("[data-open-contact]").forEach((btn) => {
+    btn.addEventListener("click", () => {
+      if (contactModal && !contactModal.open && typeof contactModal.showModal === "function") {
+        contactModal.showModal();
+      }
+    });
   });
+
+  if (contactModal) {
+    contactModal.querySelectorAll("[data-close-contact]").forEach((btn) => {
+      btn.addEventListener("click", closeContactModal);
+    });
+
+    contactModal.addEventListener("cancel", (e) => {
+      e.preventDefault();
+    });
+  }
+
+  /* ----------------------------------------------------------
+     Contact form — submits to Formspree via fetch so the modal
+     stays put and the visitor gets inline feedback.
+     ---------------------------------------------------------- */
+  (function contactForm() {
+    const form = document.getElementById("contact-form");
+    if (!form) return;
+
+    const status = document.getElementById("form-status");
+    const submit = form.querySelector('button[type="submit"]');
+    const isIt = () => document.documentElement.getAttribute("data-lang") === "it";
+
+    form.addEventListener("submit", async (e) => {
+      e.preventDefault();
+      if (submit) submit.disabled = true;
+      if (status) {
+        status.className = "form-status";
+        status.textContent = isIt() ? "Invio in corso…" : "Sending…";
+      }
+
+      try {
+        const res = await fetch(form.action, {
+          method: "POST",
+          body: new FormData(form),
+          headers: { Accept: "application/json" },
+        });
+        if (!res.ok) throw new Error("request failed");
+        form.reset();
+        if (status) {
+          status.className = "form-status ok";
+          status.textContent = isIt()
+            ? "Messaggio inviato. Grazie!"
+            : "Message sent. Thank you!";
+        }
+      } catch (_) {
+        if (status) {
+          status.className = "form-status err";
+          status.textContent = isIt()
+            ? "Invio non riuscito. Riprova più tardi."
+            : "Sending failed. Please try again later.";
+        }
+      } finally {
+        if (submit) submit.disabled = false;
+      }
+    });
+  })();
 })();

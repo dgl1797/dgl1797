@@ -283,7 +283,7 @@ html[data-lang="it"] p.lang-it { display: block; }
   align-items: center;
   justify-content: center;
   text-align: center;
-  padding: 7rem 1.5rem 4rem;
+  padding: 7rem 1.5rem 1.5rem;
   position: relative;
 }
 
@@ -369,14 +369,6 @@ html[data-lang="it"] .hero-role .lang-it {
   margin: 0 auto 2.4rem;
 }
 
-.hero-cta {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 1rem;
-  margin-bottom: 2.2rem;
-}
-
 .btn {
   position: relative;
   display: inline-flex;
@@ -394,7 +386,8 @@ html[data-lang="it"] .hero-role .lang-it {
 }
 
 /* Cosmic dust: a ring of fine grains orbiting the border, then resting */
-.btn::after {
+.btn::after,
+.hero-card-glow::after {
   content: "";
   position: absolute;
   inset: -1px;
@@ -452,70 +445,106 @@ html[data-lang="it"] .hero-role .lang-it {
   color: var(--bg-deep);
 }
 
-.btn-ghost {
-  background: transparent;
-  color: var(--moon);
-  border: 1px solid var(--border-strong);
-}
-
-.btn-ghost:hover {
-  transform: translateY(-2px);
-  border-color: var(--moon);
-  box-shadow: 0 0 22px var(--moon-glow-soft);
-  color: var(--moon-bright);
-}
-
 .btn:disabled {
   opacity: 0.55;
   cursor: wait;
   transform: none;
 }
 
-.hero-links {
+.hero-cards {
   display: flex;
-  gap: 1.4rem;
+  flex-wrap: wrap;
   justify-content: center;
+  gap: 1rem;
+  margin-top: 2.4rem;
 }
 
-.hero-links a {
-  color: var(--text-muted);
-  transition: color 0.3s ease, transform 0.3s ease, filter 0.3s ease;
-  display: inline-flex;
+.hero-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.45rem;
+  flex: 1 1 150px;
+  max-width: 220px;
+  padding: 1.2rem 1.4rem;
+  background: var(--bg-card);
+  border: 1px solid var(--border-soft);
+  border-radius: var(--radius);
+  color: var(--moon);
+  text-decoration: none;
+  font: inherit;
+  cursor: pointer;
+  backdrop-filter: blur(8px);
+  transition: border-color var(--transition), box-shadow var(--transition), transform var(--transition), color 0.3s ease;
 }
 
-.hero-links a:hover {
+.hero-card:hover {
+  transform: translateY(-4px);
+  border-color: var(--moon);
+  box-shadow: 0 8px 40px rgba(0, 0, 0, 0.35), 0 0 28px var(--moon-glow-soft);
   color: var(--moon-bright);
-  transform: translateY(-3px);
-  filter: drop-shadow(0 0 8px var(--moon-glow));
 }
 
-.scroll-hint {
-  position: absolute;
-  bottom: 2.2rem;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 26px;
-  height: 44px;
-  border: 1px solid var(--border-strong);
-  border-radius: 999px;
-  display: flex;
-  justify-content: center;
-  padding-top: 8px;
+.hero-card-label {
+  font-size: 0.78rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--text-muted);
 }
 
-.scroll-orb {
-  width: 5px;
-  height: 5px;
-  border-radius: 50%;
-  background: var(--moon-bright);
-  box-shadow: 0 0 8px var(--moon-glow);
-  animation: scroll-fall 2.2s ease-in-out infinite;
+.hero-card-value {
+  font-size: 0.92rem;
+  color: var(--moon-bright);
 }
 
-@keyframes scroll-fall {
-  0%   { transform: translateY(0); opacity: 1; }
-  70%  { transform: translateY(18px); opacity: 0; }
-  100% { transform: translateY(0); opacity: 0; }
+.hero-card-glow {
+  border-color: var(--moon-bright);
+  color: var(--moon-bright);
+}
+
+.hero-card-glow::after {
+  padding: 2.5px;
+  opacity: 1;
+  filter: brightness(1.35) drop-shadow(0 0 9px var(--moon-glow));
+  animation: dust-orbit-continuous var(--dust-duration, 10s) linear infinite;
+  animation-delay: var(--dust-delay, 0s);
+}
+
+@keyframes dust-orbit-continuous {
+  from { --dust-angle: 0deg; }
+  to   { --dust-angle: 360deg; }
+}
+
+.hero-quote {
+  max-width: 38rem;
+  margin: 2.6rem auto 0;
+  color: var(--text-muted);
+  font-size: 0.85rem;
+  font-style: italic;
+}
+
+html[data-lang="en"] .hero-quote .lang-en,
+html[data-lang="it"] .hero-quote .lang-it {
+  display: inline-block;
+  background-image: linear-gradient(
+    110deg,
+    var(--text-muted) 0%,
+    var(--text-muted) 42%,
+    var(--accent) 48%,
+    #fbf7ff 50%,
+    var(--accent) 52%,
+    var(--text-muted) 58%,
+    var(--text-muted) 100%
+  );
+  background-size: 250% 100%;
+  background-position: 0% 50%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+  animation: title-sweep 6s linear infinite;
+  animation-delay: 0.35s;
 }
 
 /* ---------- Sections ---------- */
@@ -1055,87 +1084,203 @@ html[data-lang="it"] .hero-role .lang-it {
 
 .project-card .tech { margin-top: auto; }
 
-/* ---------- Contact ---------- */
-.contact-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
-  gap: 1.4rem;
-  margin-bottom: 2.6rem;
+/* ---------- Contact modal ---------- */
+.contact-modal {
+  position: fixed;
+  inset: 0;
+  margin: auto;
+  width: min(92vw, 600px);
+  max-height: 88vh;
+  overflow-y: auto;
+  padding: 2rem 2.1rem;
+  border: 1px solid var(--border-strong);
+  border-radius: var(--radius);
+  background:
+    linear-gradient(180deg, rgba(143, 163, 255, 0.1), transparent 140px),
+    var(--bg-card);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  color: var(--text);
+  box-shadow:
+    0 24px 80px rgba(0, 0, 0, 0.6),
+    0 0 48px var(--moon-glow-soft),
+    inset 0 1px 0 rgba(232, 237, 245, 0.08);
+  scrollbar-width: thin;
+  scrollbar-color: var(--border-strong) transparent;
 }
 
-.contact-card {
-  background: var(--bg-card);
+.contact-modal[open] {
+  animation: modal-in 0.28s cubic-bezier(0.22, 0.61, 0.36, 1);
+}
+
+@keyframes modal-in {
+  from { opacity: 0; transform: translateY(14px) scale(0.97); }
+  to   { opacity: 1; transform: none; }
+}
+
+.contact-modal::backdrop {
+  background: rgba(3, 5, 10, 0.72);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+}
+
+.contact-modal[open]::backdrop {
+  animation: backdrop-in 0.28s ease;
+}
+
+@keyframes backdrop-in {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+.contact-modal.closing {
+  animation: modal-out 0.22s cubic-bezier(0.22, 0.61, 0.36, 1) forwards;
+}
+
+.contact-modal.closing::backdrop {
+  animation: backdrop-out 0.22s ease forwards;
+}
+
+@keyframes modal-out {
+  from { opacity: 1; transform: none; }
+  to   { opacity: 0; transform: translateY(14px) scale(0.97); }
+}
+
+@keyframes backdrop-out {
+  from { opacity: 1; }
+  to   { opacity: 0; }
+}
+
+.modal-head {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding-bottom: 1.1rem;
+  margin-bottom: 1.5rem;
+}
+
+.modal-head::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--moon) 50%, transparent);
+  opacity: 0.4;
+}
+
+.modal-title {
+  font-family: var(--font-display);
+  font-size: 1.35rem;
+  font-weight: 600;
+  color: var(--moon-bright);
+  letter-spacing: 0.01em;
+  text-shadow: 0 0 22px var(--moon-glow-soft);
+}
+
+.modal-close {
+  display: grid;
+  place-items: center;
+  width: 34px;
+  height: 34px;
+  flex: 0 0 auto;
   border: 1px solid var(--border-soft);
-  border-radius: var(--radius);
-  padding: 1.7rem 1.4rem;
-  text-align: center;
-  text-decoration: none;
-  color: var(--moon);
+  border-radius: 50%;
+  background: var(--accent-dim);
+  color: var(--text-muted);
+  font-size: 1.25rem;
+  line-height: 1;
+  cursor: pointer;
+  transition: color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease;
+}
+
+.modal-close:hover {
+  color: var(--moon-bright);
+  border-color: var(--moon);
+  box-shadow: 0 0 14px var(--moon-glow-soft);
+  transform: rotate(90deg);
+}
+
+/* ---------- Contact form ---------- */
+.contact-form {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  gap: 0.5rem;
-  backdrop-filter: blur(8px);
-  transition: border-color var(--transition), box-shadow var(--transition), transform var(--transition), color 0.3s ease;
+  gap: 1.1rem;
 }
 
-.contact-card:hover {
-  transform: translateY(-5px);
-  border-color: var(--moon);
-  box-shadow: 0 0 32px var(--moon-glow-soft);
-  color: var(--moon-bright);
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.1rem;
 }
 
-.contact-label {
+.form-field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.form-label {
   font-size: 0.78rem;
-  letter-spacing: 0.16em;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
   color: var(--text-muted);
-  margin-top: 0.3rem;
 }
 
-.contact-value {
-  font-size: 0.92rem;
-  color: var(--moon-bright);
-  word-break: break-word;
+.contact-form input,
+.contact-form textarea {
+  width: 100%;
+  background: rgba(4, 6, 12, 0.6);
+  border: 1px solid var(--border-soft);
+  border-radius: 12px;
+  padding: 0.75rem 1rem;
+  color: var(--text);
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
 }
 
-.contact-cta {
-  display: flex;
-  justify-content: center;
+.contact-form input::placeholder,
+.contact-form textarea::placeholder { color: var(--text-muted); opacity: 0.6; }
+
+.contact-form input:hover,
+.contact-form textarea:hover { border-color: var(--border-strong); }
+
+.contact-form input:focus,
+.contact-form textarea:focus {
+  outline: none;
+  border-color: var(--moon);
+  box-shadow: 0 0 16px var(--moon-glow-soft);
 }
 
-/* ---------- Footer ---------- */
-.footer {
-  text-align: center;
-  padding: 0 1.5rem 2.4rem;
-  color: var(--text-muted);
-  font-size: 0.85rem;
+.contact-form textarea {
+  resize: vertical;
+  min-height: 7rem;
+  max-height: 12rem;
 }
 
-.footer .separator { margin-bottom: 2rem; }
+.contact-form .btn {
+  align-self: flex-end;
+  margin-top: 0.9rem;
+}
 
-html[data-lang="en"] .footer p > .lang-en,
-html[data-lang="it"] .footer p > .lang-it {
-  display: inline-block;
-  background-image: linear-gradient(
-    110deg,
-    var(--text-muted) 0%,
-    var(--text-muted) 42%,
-    var(--accent) 48%,
-    #fbf7ff 50%,
-    var(--accent) 52%,
-    var(--text-muted) 58%,
-    var(--text-muted) 100%
-  );
-  background-size: 250% 100%;
-  background-position: 0% 50%;
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
-  color: transparent;
-  animation: title-sweep 6s linear infinite;
-  animation-delay: 0.35s;
+.form-honeypot {
+  position: absolute;
+  left: -9999px;
+  width: 1px;
+  height: 1px;
+  opacity: 0;
+}
+
+.form-status { font-size: 0.9rem; min-height: 1.2em; }
+.form-status.ok { color: var(--moon-bright); }
+.form-status.err { color: #ff9a9a; }
+
+@media (max-width: 760px) {
+  .form-row { grid-template-columns: 1fr; }
 }
 
 /* ---------- Reveal animations ---------- */
@@ -1155,12 +1300,17 @@ html[data-lang="it"] .footer p > .lang-it {
 /* ---------- Reduced motion ---------- */
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
-  .nebula, .scroll-orb, .separator::after,
+  .nebula, .separator::after,
   .hero-name,
   html[data-lang="en"] .hero-role .lang-en,
   html[data-lang="it"] .hero-role .lang-it,
-  html[data-lang="en"] .footer p > .lang-en,
-  html[data-lang="it"] .footer p > .lang-it,
+  html[data-lang="en"] .hero-quote .lang-en,
+  html[data-lang="it"] .hero-quote .lang-it,
+  .contact-modal[open],
+  .contact-modal[open]::backdrop,
+  .contact-modal.closing,
+  .contact-modal.closing::backdrop,
+  .hero-card-glow::after,
   .btn::after { animation: none; }
   .timeline-marker { transition: none; }
   .timeline-head.on,

@@ -3,3 +3,6 @@ node_modules/
 
 # Generated CV PDFs (built by build/generate-cv-pdf.js in CI)
 site/assets/*.pdf
+
+# AGENT files
+/.agent/
