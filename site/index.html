@@ -51,11 +51,11 @@
         <h1 class="hero-name">Luca <span class="glow-text">Di Giacomo</span></h1>
         <h2 class="hero-role">
           <span class="lang lang-en">AI &amp; Data Specialist · M.Sc. Artificial Intelligence &amp; Data Engineering</span>
-          <span class="lang lang-it">AI &amp; Data Specialist · Laurea Magistrale in Artificial Intelligence &amp; Data Engineering</span>
+          <span class="lang lang-it">AI &amp; Data Specialist · LM in Artificial Intelligence &amp; Data Engineering</span>
         </h2>
         <p class="hero-tagline">
-          <span class="lang lang-en">Bridging Software Engineering and AI &amp; Data Engineering — Machine Learning, Deep Learning and GenAI, with academic projects focused on Computer Vision.</span>
-          <span class="lang lang-it">Un ponte tra Software Engineering e AI &amp; Data Engineering — Machine Learning, Deep Learning e GenAI, con progetti accademici incentrati sulla Computer Vision.</span>
+          <span class="lang lang-en">Bridging Software Engineering and AI &amp; Data Engineering — Experience in Full stack development with modern frameworks with advanced knowledge of ML/DL and GenAI algorithms and architectures</span>
+          <span class="lang lang-it">Unisco Software Engineering e AI &amp; Data Engineering — Esperienza come Full stack developer su framework moderni e conoscenza avanzata di algoritmi e architetture per ML/DL e GenAI</span>
         </p>
         <div class="hero-cards">
           <a class="hero-card" href="https://github.com/dgl1797" target="_blank" rel="noopener">
@@ -202,11 +202,11 @@
               <h3>Software Engineering</h3>
             </div>
             <div class="chip-row">
-              <span class="chip">Node</span><span class="chip">Spring Boot</span>
-              <span class="chip">FastAPI</span><span class="chip">Flask</span><span class="chip">Flet</span><span class="chip">Java</span>
-              <span class="chip">JavaScript/TypeScript</span><span class="chip">Git</span><span class="chip">Docker</span>
-              <span class="chip">React</span><span class="chip">Angular</span><span class="chip">Python</span>
+              <span class="chip">Python (FastAPI · Flask · Flet)</span>
+              <span class="chip">JavaScript/TypeScript (Node · React · Angular · Svelte · Express)</span>
+              <span class="chip">Java (Spring · JPA · JAX-RS)</span>
               <span class="chip">C/C++</span>
+              <span class="chip">Git</span><span class="chip">Docker</span><span class="chip">Git Actions</span>
             </div>
           </div>
         </div>
@@ -223,19 +223,28 @@
           <span class="lang lang-en">Work experience</span>
           <span class="lang lang-it">Esperienza lavorativa</span>
         </h2>
-        <div class="timeline">
-          <div class="timeline-tail" aria-hidden="true"></div>
-          <div class="timeline-head" aria-hidden="true"></div>
+        <div class="xp">
+          <div class="xp-rail" role="tablist" aria-label="Work experience">
+            <div class="xp-track" aria-hidden="true"></div>
 
-          <article class="timeline-item reveal">
-            <div class="timeline-marker" aria-hidden="true"></div>
-            <div class="timeline-card">
-              <p class="timeline-date">
+            <button type="button" class="xp-dot active" role="tab" data-xp="0" aria-selected="true" aria-controls="xp-panel-0" style="--pos:50%">
+              <span class="xp-dot-label">
                 <span class="lang lang-en">Jan 2026 – Present</span>
                 <span class="lang lang-it">Gen 2026 – Presente</span>
-              </p>
+              </span>
+            </button>
+            <button type="button" class="xp-dot" role="tab" data-xp="1" aria-selected="false" aria-controls="xp-panel-1" style="--pos:84%">
+              <span class="xp-dot-label">
+                <span class="lang lang-en">Mar 2021 – Dec 2021</span>
+                <span class="lang lang-it">Mar 2021 – Dic 2021</span>
+              </span>
+            </button>
+          </div>
+
+          <div class="xp-panels">
+            <article class="xp-panel active" id="xp-panel-0" data-xp="0" role="tabpanel" aria-hidden="false">
               <h3>Data &amp; AI Specialist</h3>
-              <p class="timeline-company">Deloitte NextHub S.r.l. S.B.</p>
+              <p class="xp-company">Deloitte NextHub S.r.l. S.B.</p>
               <p class="lang lang-en">Currently working within the Data Analytics &amp; HR Innovation team at Deloitte NextHub, with core responsibilities including:</p>
               <p class="lang lang-it">Attualmente inserito all'interno del team Data Analytics &amp; HR Innovation presso Deloitte NextHub, con le seguenti responsabilità principali:</p>
               <ul class="timeline-list">
@@ -260,18 +269,11 @@
                   <span class="tech">MS Teams · MS Tasks · MS SharePoint</span>
                 </li>
               </ul>
-            </div>
-          </article>
+            </article>
 
-          <article class="timeline-item reveal">
-            <div class="timeline-marker" aria-hidden="true"></div>
-            <div class="timeline-card">
-              <p class="timeline-date">
-                <span class="lang lang-en">Mar 2021 – Dec 2021</span>
-                <span class="lang lang-it">Mar 2021 – Dic 2021</span>
-              </p>
+            <article class="xp-panel" id="xp-panel-1" data-xp="1" role="tabpanel" aria-hidden="true">
               <h3>Full Stack Developer</h3>
-              <p class="timeline-company">Fragments S.r.l.</p>
+              <p class="xp-company">Fragments S.r.l.</p>
               <p class="lang lang-en"><strong>Internship:</strong></p>
               <p class="lang lang-it"><strong>Tirocinio:</strong></p>
               <ul class="timeline-list">
@@ -306,9 +308,8 @@
                   <span class="tech">Node · NPM · React · Redux · RESTful APIs · MySQL · Agile/SCRUM · Jira · Slack · Git</span>
                 </li>
               </ul>
-            </div>
-          </article>
-
+            </article>
+          </div>
         </div>
       </div>
     </section>
@@ -325,41 +326,48 @@
         </h2>
         <div class="edu-grid">
           <article class="edu-card reveal">
-            <p class="edu-date">
-              <span class="lang lang-en">Aug 2021 – Oct 2025</span>
-              <span class="lang lang-it">Ago 2021 – Ott 2025</span>
-            </p>
-            <h3>
-              <span class="lang lang-en">M.Sc. in Artificial Intelligence and Data Engineering (LM-32)</span>
-              <span class="lang lang-it">Laurea Magistrale in Artificial Intelligence and Data Engineering (LM-32)</span>
-            </h3>
-            <p class="edu-school">
-              <span class="lang lang-en">University of Pisa · Final Grade: 108/110</span>
-              <span class="lang lang-it">Università degli Studi di Pisa · Valutazione finale: 108/110</span>
-            </p>
+            <div class="edu-head">
+              <p class="edu-date">
+                <span class="lang lang-en">Aug 2021 – Oct 2025</span>
+                <span class="lang lang-it">Ago 2021 – Ott 2025</span>
+              </p>
+              <h3>
+                <span class="lang lang-en">M.Sc. in Artificial Intelligence and Data Engineering</span>
+                <span class="lang lang-it">LM in Artificial Intelligence and Data Engineering</span>
+              </h3>
+              <p class="edu-school">
+                <span class="lang lang-en">University of Pisa · Final Grade: 108/110</span>
+                <span class="lang lang-it">Università degli Studi di Pisa · Valutazione finale: 108/110</span>
+              </p>
+            </div>
             <p class="edu-detail">
               <span class="lang lang-en"><em>Thesis:</em> Model Weight Learning as a Novel Paradigm in Computer Vision</span>
               <span class="lang lang-it"><em>Tesi:</em> Model Weight Learning as a Novel Paradigm in Computer Vision</span>
             </p>
-            <p class="edu-detail">
-              <span class="lang lang-en">Practical, project-oriented curriculum focused on team deliverables evaluated by academic faculty and industry professionals.</span>
-              <span class="lang lang-it">Percorso pratico orientato allo sviluppo di progetti di team valutati da personale docente e professionisti.</span>
+            <p class="edu-overview">
+              <span class="lang lang-en">A detailed course taught in English, spanning several ICT domains (IoT, Cloud, Distributed Applications) and specialising them in Data Engineering and the integration of Artificial Intelligence and Machine Learning algorithms. The course blends a practical and theoretical approach through the assessment of group projects, which are preparatory to the theoretical exams of each course.</span>
+              <span class="lang lang-it">Corso dettagliato, in lingua inglese, che tocca vari ambiti delle ICT (IoT, Cloud, Applicazioni Distribuite) specializzandoli all'ingegneria dei dati e all'integrazione di algoritmi di intelligenza artificiale e machine learning. Il corso propone un approccio misto pratico e teorico attraverso la valutazione di progetti di gruppo propedeutici all'accesso agli esami teorici per ogni corso affrontato.</span>
             </p>
           </article>
           <article class="edu-card reveal">
-            <p class="edu-date">
-              <span class="lang lang-en">Sep 2015 – Jul 2021</span>
-              <span class="lang lang-it">Set 2015 – Lug 2021</span>
-            </p>
-            <h3>
-              <span class="lang lang-en">B.Sc. in Computer Engineering (L-8)</span>
-              <span class="lang lang-it">Laurea Triennale in Ingegneria Informatica (L-8)</span>
-            </h3>
-            <p class="edu-school">Politecnico di Torino</p>
+            <div class="edu-head">
+              <p class="edu-date">
+                <span class="lang lang-en">Sep 2015 – Jul 2021</span>
+                <span class="lang lang-it">Set 2015 – Lug 2021</span>
+              </p>
+              <h3>
+                <span class="lang lang-en">B.Sc. in Computer Engineering</span>
+                <span class="lang lang-it">Laurea Triennale in Ingegneria Informatica</span>
+              </h3>
+              <p class="edu-school">Politecnico di Torino</p>
+            </div>
             <p class="edu-detail">
-              <span class="lang lang-en"><strong>Core courses:</strong> 
-                Algorithms and Data Structures [C/C++] · Databases [SQL, JS, HTML, CSS] · Object-Oriented Programming [UML, Java] · Operating Systems [C/C++] · Computer Networks (ISO/OSI stack).</span>
-              <span class="lang lang-it"><strong>Esami principali:</strong> Algoritmi e Strutture Dati [C/C++] · Basi di Dati [SQL, JS, HTML, CSS] · Programmazione a Oggetti [UML, Java] · Sistemi Operativi [C/C++] · Reti di Calcolatori (stack ISO/OSI).</span>
+              <span class="lang lang-en"><em>Internship:</em> Full Stack Development at Fragments S.r.l.</span>
+              <span class="lang lang-it"><em>Tirocinio:</em> Sviluppo Full Stack presso Fragments S.r.l.</span>
+            </p>
+            <p class="edu-overview">
+              <span class="lang lang-en">An Engineering degree focused on information and electronic computers, with foundations in physics, mathematical analysis, statistics, programming, operating systems, computer networks and the processing of analog and digital signals.</span>
+              <span class="lang lang-it">Corso di Ingegneria, orientato all'informazione e ai calcolatori elettronici, con fondamenti di fisica, analisi matematica, statistica, programmazione, sistemi operativi, reti di calcolatori ed elaborazione dei segnali analogici e digitali.</span>
             </p>
           </article>
         </div>

@@ -301,7 +301,7 @@
      ---------------------------------------------------------- */
   (function cosmicDust() {
     if (prefersReducedMotion) return;
-    document.querySelectorAll(".btn, .hero-card-glow").forEach((btn) => {
+    document.querySelectorAll(".btn, .hero-card-glow, .xp-dot").forEach((btn) => {
       const duration = 9 + Math.random() * 3;
       btn.style.setProperty("--dust-duration", duration.toFixed(2) + "s");
       btn.style.setProperty("--dust-delay", (-Math.random() * duration).toFixed(2) + "s");
@@ -376,61 +376,84 @@
   })();
 
   /* ----------------------------------------------------------
-     Timeline progress — a scroll-driven snake. A glowing head
-     rides the timeline with the viewport, trailing a lit bar,
-     and each experience marker stays lit once scrolled past.
+     Experience selector — the rail is the interactive timeline.
+     The active dot sits centred, dots for earlier experiences
+     cluster at the top of the rail and later ones at the bottom.
+     Clicking a dot or its period swaps the detail panel.
      ---------------------------------------------------------- */
-  (function timelineProgress() {
-    const timeline = document.querySelector(".timeline");
-    if (!timeline) return;
+  (function experienceSelector() {
+    const xp = document.querySelector(".xp");
+    if (!xp) return;
 
-    const items = Array.from(timeline.querySelectorAll(".timeline-item"));
-    const headEl = timeline.querySelector(".timeline-head");
-    let rafId = null;
+    const dots = Array.from(xp.querySelectorAll(".xp-dot"));
+    const panels = Array.from(xp.querySelectorAll(".xp-panel"));
+    const rail = xp.querySelector(".xp-rail");
+    const n = dots.length;
+    if (!n) return;
 
-    function railX() {
-      const marker = timeline.querySelector(".timeline-marker");
-      if (!marker) return timeline.offsetWidth / 2;
-      const tr = timeline.getBoundingClientRect();
-      const mr = marker.getBoundingClientRect();
-      return mr.left + mr.width / 2 - tr.left;
+    const EDGE = 6;
+    const BAND = 20;
+
+    function posFor(i, active) {
+      if (i === active) return 50;
+      if (i < active) return EDGE + (i + 0.5) * (BAND / active);
+      return 100 - EDGE - (n - 1 - i + 0.5) * (BAND / (n - 1 - active));
     }
 
-    function update() {
-      rafId = null;
-      const rect = timeline.getBoundingClientRect();
-      const vh = window.innerHeight;
-      const lineTop = 8;
-      const lineLen = rect.height - 16;
-      const headY = vh * 0.55 - rect.top;
-
-      const progress = Math.max(0, Math.min(1, (headY - lineTop) / lineLen));
-      timeline.style.setProperty("--progress", progress.toFixed(4));
-      timeline.style.setProperty("--rail-x", railX() + "px");
-
-      if (headEl) {
-        const visible = headY >= lineTop && headY <= lineTop + lineLen;
-        headEl.classList.toggle("on", visible);
-        headEl.style.setProperty("--head-top", headY + "px");
-      }
-
-      items.forEach((item) => {
-        const marker = item.querySelector(".timeline-marker");
-        if (!marker) return;
-        const m = marker.getBoundingClientRect();
-        const markerY = m.top + m.height / 2;
-        item.classList.toggle("read", markerY <= headY);
-        item.classList.toggle("active", Math.abs(markerY - headY) <= vh * 0.18);
+    function select(active) {
+      dots.forEach((dot, i) => {
+        const on = i === active;
+        dot.style.setProperty("--pos", posFor(i, active).toFixed(2) + "%");
+        dot.classList.toggle("active", on);
+        dot.setAttribute("aria-selected", String(on));
+      });
+      panels.forEach((panel, i) => {
+        const on = i === active;
+        panel.classList.toggle("active", on);
+        panel.setAttribute("aria-hidden", String(!on));
       });
     }
 
-    function onScroll() {
-      if (rafId === null) rafId = requestAnimationFrame(update);
+    const current = () => dots.findIndex((d) => d.classList.contains("active"));
+
+    dots.forEach((dot, i) => dot.addEventListener("click", () => select(i)));
+
+    if (rail) {
+      rail.addEventListener("keydown", (e) => {
+        let next = null;
+        if (e.key === "ArrowDown" || e.key === "ArrowRight") next = (current() + 1) % n;
+        else if (e.key === "ArrowUp" || e.key === "ArrowLeft") next = (current() - 1 + n) % n;
+        if (next === null) return;
+        e.preventDefault();
+        e.stopPropagation();
+        select(next);
+        dots[next].focus();
+      });
     }
 
-    window.addEventListener("scroll", onScroll, { passive: true });
-    window.addEventListener("resize", onScroll);
-    update();
+    select(0);
+  })();
+
+  /* ----------------------------------------------------------
+     Cosmic specks — random, independently twinkling stars in the
+     timeline rail's background.
+     ---------------------------------------------------------- */
+  (function railSparkles() {
+    if (prefersReducedMotion) return;
+    const rail = document.querySelector(".xp-rail");
+    if (!rail) return;
+
+    for (let i = 0; i < 16; i++) {
+      const star = document.createElement("span");
+      star.className = "xp-star";
+      star.style.left = (4 + Math.random() * 92).toFixed(2) + "%";
+      star.style.top = (4 + Math.random() * 92).toFixed(2) + "%";
+      star.style.width = star.style.height = (1 + Math.random() * 1.3).toFixed(2) + "px";
+      const duration = 2.5 + Math.random() * 3;
+      star.style.animationDuration = duration.toFixed(2) + "s";
+      star.style.animationDelay = (-Math.random() * duration).toFixed(2) + "s";
+      rail.insertBefore(star, rail.firstChild);
+    }
   })();
 
   /* ----------------------------------------------------------
