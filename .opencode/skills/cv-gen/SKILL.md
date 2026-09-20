@@ -21,7 +21,6 @@ Your job is to compile a resume to be printed in PDF, use a cv-pdf.html to rende
 1. Create the `.agent/cvs/<session-id>.html` representing a 1-to-1 copy of the final PDF
 2. Let user test the layout and **wait for user confirmation before proceeding**
 3. Execute the script @ `.opencode/skills/cv-gen/scripts/generate-cvpdf.js` passing it the session-id decided by the user as argument
-4. 
 
 # Guardrails
 - **Session:** BEFORE ANYTHING - ALWAYS ask the user for a session-id, it is mandatory to execute the skill!
