@@ -1,5 +1,5 @@
-# Hi!
+## Hi!
 
-I'm a passionate engineer specialized in software and artificial intelligence. With a Master of Science in AI & Data Engineering and a work+personal experience in Software Engineering with the most recent tech stacks. I can fill the gap between AI model training/fine-tuning/evaluation and exposure through Software that strategically integrates them to provide out of the ordinary applications.
+I'm a passionate tech-specialist with a master of science in artificial intelligence and data engineering. Through passion and a work+personal experience in developing cross-platform apps using the most recent tech stacks, I developed an out of the ordinary flexibility that allows me to move from software development tasks to Data & AI design, training, evaluation and deployment activities with ease.
 
-Visit my web-site at git pages for [more information](https://dgl1797.github.io/dgl1797/)
+Please, visit my web-site @ git pages for [more information](https://dgl1797.github.io/dgl1797/)
