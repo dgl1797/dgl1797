@@ -18,8 +18,8 @@ const { pathToFileURL } = require("url");
 const puppeteer = require("puppeteer");
 const fs = require("fs")
 
-const CV_PAGE = path.resolve(__dirname, "..", "..", "..", "..", ".agent", "cvs", `${filename}.html`,);
-const OUT_DIR = path.resolve(__dirname, "..", "..", "..", "..", ".agent", "cvs", `Luca-Di-Giacomo-CV-${filename}.pdf`);
+const CV_PAGE = path.resolve(__dirname, "..", "..", "..", "..", ".agent", "html-models", `${filename}.html`,);
+const OUT_DIR = path.resolve(__dirname, "..", "..", "..", "..", ".agent", "cvs", `${filename}.pdf`);
 
 (async () => {
   const browser = await puppeteer.launch({
@@ -40,7 +40,6 @@ const OUT_DIR = path.resolve(__dirname, "..", "..", "..", "..", ".agent", "cvs",
     });
 
     await page.close();
-    fs.unlinkSync(CV_PAGE);
     console.log("Generated:", outPath);
   } finally {
     await browser.close();
