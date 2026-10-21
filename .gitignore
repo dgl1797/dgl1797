@@ -6,3 +6,6 @@ site/assets/*.pdf
 
 # AGENT files
 /.agent/
+
+# Personal Files
+/assets/
