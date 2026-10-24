@@ -98,6 +98,10 @@
     let w = 0;
     let h = 0;
     let rafId = null;
+    let lastT = 0;
+    const sparkles = [];
+    const MAX_SPARKS = 21;
+    let nextSpark = 0;
 
     function resize() {
       const dpr = Math.min(window.devicePixelRatio || 1, 2);
@@ -122,9 +126,23 @@
       }));
     }
 
+    function spawnSparkle(time) {
+      sparkles.push({
+        x: Math.random() * w,
+        y: Math.random() * h,
+        r: Math.random() * 1.3 + 0.25,
+        age: 0,
+        delay: Math.random() * 0.5,
+        life: Math.random() * 1.6 + 1.2,
+      });
+      nextSpark = time + Math.random() * 0.4 + 0.2;
+    }
+
     function draw(t) {
       ctx.clearRect(0, 0, w, h);
       const time = t / 1000;
+      const dt = Math.min(time - lastT, 0.05) || 0;
+      lastT = time;
       for (const s of stars) {
         const twinkle = prefersReducedMotion
           ? s.base
@@ -140,6 +158,25 @@
           if (s.y > h + 2) s.y = -2;
         }
       }
+
+      if (!prefersReducedMotion) {
+        if (time >= nextSpark && sparkles.length < MAX_SPARKS) spawnSparkle(time);
+        for (let i = sparkles.length - 1; i >= 0; i--) {
+          const s = sparkles[i];
+          s.age += dt;
+          if (s.age >= s.delay + s.life) {
+            sparkles.splice(i, 1);
+            continue;
+          }
+          if (s.age < s.delay) continue;
+          ctx.globalAlpha = 0.8 * Math.sin(Math.PI * ((s.age - s.delay) / s.life));
+          ctx.fillStyle = "#8fa3ff";
+          ctx.beginPath();
+          ctx.arc(s.x, s.y, s.r, 0, Math.PI * 2);
+          ctx.fill();
+        }
+      }
+
       ctx.globalAlpha = 1;
       if (!prefersReducedMotion) rafId = requestAnimationFrame(draw);
     }
